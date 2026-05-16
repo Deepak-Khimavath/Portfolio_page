@@ -1655,7 +1655,6 @@ const CHAT_TRANSCRIPT_URL = '/api/transcript';
  
 let chatHistory = [];
 let isSending = false;
-let transcriptTimer = null;
 let transcriptSent = false;
 let nudgeTimer = null;
  
@@ -1744,34 +1743,35 @@ function animateBubble(el, html, speed = 22) {
   tick();
 }
 
-function scheduleTranscriptSend(delay = 90000) {
-  if (transcriptSent) return;
-  const userTurns = chatHistory.filter(m => m.role === 'user').length;
-  const aiTurns = chatHistory.filter(m => m.role === 'assistant').length;
-  if (!userTurns || !aiTurns) return;
-  clearTimeout(transcriptTimer);
-  transcriptTimer = setTimeout(() => sendChatTranscript('conversation_inactive'), delay);
+function buildTranscriptPayload(reason) {
+  return JSON.stringify({
+    reason,
+    page: location.href,
+    messages: chatHistory
+  });
 }
 
-async function sendChatTranscript(reason) {
+async function sendChatTranscript(reason, useBeacon = false) {
   if (transcriptSent) return;
   const userTurns = chatHistory.filter(m => m.role === 'user').length;
   const aiTurns = chatHistory.filter(m => m.role === 'assistant').length;
   if (!userTurns || !aiTurns) return;
 
   transcriptSent = true;
-  clearTimeout(transcriptTimer);
+  const payload = buildTranscriptPayload(reason);
+
+  if (useBeacon && navigator.sendBeacon) {
+    const blob = new Blob([payload], { type: 'application/json' });
+    const queued = navigator.sendBeacon(CHAT_TRANSCRIPT_URL, blob);
+    if (queued) return;
+  }
 
   try {
     await fetch(CHAT_TRANSCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       keepalive: true,
-      body: JSON.stringify({
-        reason,
-        page: location.href,
-        messages: chatHistory
-      })
+      body: payload
     });
   } catch (e) {
     transcriptSent = false;
@@ -1819,7 +1819,6 @@ async function sendMsg() {
     removeTyping();
     const bub = appendMsg('ai', '');
     animateBubble(bub, formatResponse(reply));
-    scheduleTranscriptSend();
 
     // auto-show contact form if user wants to contact
     const contactWords = [
@@ -1982,7 +1981,6 @@ function closeChat() {
   document.getElementById('chatFab').style.display = 'flex';
   const tip = document.getElementById('chatFabTip');
   if (tip) tip.classList.remove('show');
-  sendChatTranscript('chat_closed');
 }
 function toggleChat() {
   const m = document.getElementById('chatModal');
@@ -2008,6 +2006,10 @@ function showChatNudge() {
 window.addEventListener('load', () => {
   clearTimeout(nudgeTimer);
   nudgeTimer = setTimeout(showChatNudge, 1600);
+});
+
+window.addEventListener('pagehide', () => {
+  sendChatTranscript('page_closed', true);
 });
 
 // ── FORMSPREE ─────────────────────────────────────────────────────────────────
