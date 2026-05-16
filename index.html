@@ -852,6 +852,11 @@ footer{
   color:var(--muted);cursor:pointer;transition:all .2s;
 }
 .chat-modal-sugs .sug:hover{border-color:var(--cyan);color:var(--cyan);}
+.chat-privacy{
+  padding:0 16px 10px;
+  font-size:.64rem;color:var(--dim);font-family:var(--font-m);
+  line-height:1.45;
+}
 
 @media(max-width:600px){
   .chat-modal{width:calc(100vw - 24px);height:min(76vh,640px);bottom:86px;right:12px;}
@@ -1400,6 +1405,7 @@ footer{
     <span class="sug" onclick="sendSug(this)">Deepak's GitHub & LinkedIn →</span>
     <span class="sug" onclick="sendContactForm()">📬 Send a message to Deepak</span>
   </div>
+  <div class="chat-privacy">AI chat may be shared with Deepak so he can understand visitor questions and follow up.</div>
   <div class="chat-modal-foot">
     <input class="chat-modal-input" id="chatIn" placeholder="Ask about Deepak's work..." onkeydown="if(event.key==='Enter')sendMsg()"/>
     <button class="chat-modal-send" id="chatBtn" onclick="sendMsg()">Send</button>
@@ -1425,6 +1431,10 @@ footer{
           <a href="tel:+917204209095" class="contact-item">
             <div class="ci-icon">📞</div>
             <div><div class="ci-lbl">Phone</div><div class="ci-val">+91 7204209095</div></div>
+          </a>
+          <a href="https://wa.me/917204209095?text=Hi%20Deepak%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" rel="noopener" class="contact-item">
+            <div class="ci-icon">💬</div>
+            <div><div class="ci-lbl">WhatsApp</div><div class="ci-val">Message directly</div></div>
           </a>
           <a href="https://linkedin.com/in/deepak-khimavath-338074219" target="_blank" rel="noopener" class="contact-item">
             <div class="ci-icon">💼</div>
@@ -1573,9 +1583,12 @@ const AGENT_LOGO = 'https://i.postimg.cc/xCsPyC46/Chat-GPT-Image-May-16-2026-04-
 
 // ── CHAT API ─────────────────────────────────────────────────────────────────
 const CHAT_API_URL = '/api/chat';
+const CHAT_TRANSCRIPT_URL = 'https://formspree.io/f/xgodgbao';
  
 let chatHistory = [];
 let isSending = false;
+let transcriptTimer = null;
+let transcriptSent = false;
  
 function appendMsg(role, html) {
   const msgs = document.getElementById('chatMsgs');
@@ -1661,6 +1674,45 @@ function animateBubble(el, html, speed = 22) {
   }
   tick();
 }
+
+function scheduleTranscriptSend(delay = 90000) {
+  if (transcriptSent) return;
+  const userTurns = chatHistory.filter(m => m.role === 'user').length;
+  const aiTurns = chatHistory.filter(m => m.role === 'assistant').length;
+  if (!userTurns || !aiTurns) return;
+  clearTimeout(transcriptTimer);
+  transcriptTimer = setTimeout(() => sendChatTranscript('conversation_inactive'), delay);
+}
+
+async function sendChatTranscript(reason) {
+  if (transcriptSent) return;
+  const userTurns = chatHistory.filter(m => m.role === 'user').length;
+  const aiTurns = chatHistory.filter(m => m.role === 'assistant').length;
+  if (!userTurns || !aiTurns) return;
+
+  transcriptSent = true;
+  clearTimeout(transcriptTimer);
+
+  const transcript = chatHistory
+    .map((m, i) => `${i + 1}. ${m.role.toUpperCase()}: ${m.content}`)
+    .join('\n\n');
+
+  try {
+    await fetch(CHAT_TRANSCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        name: 'Portfolio AI Chat',
+        email: 'portfolio-agent@deepak.ai',
+        subject: 'Portfolio AI chat transcript',
+        message: `Reason: ${reason}\n\n${transcript}`
+      })
+    });
+  } catch (e) {
+    transcriptSent = false;
+    console.warn('Chat transcript delivery failed', e);
+  }
+}
  
 async function sendMsg() {
   if (isSending) return;
@@ -1702,9 +1754,15 @@ async function sendMsg() {
     removeTyping();
     const bub = appendMsg('ai', '');
     animateBubble(bub, formatResponse(reply));
+    scheduleTranscriptSend();
 
     // auto-show contact form if user wants to contact
-    const contactWords = ['contact','reach out','send message','hire','recruit','opportunity','connect with','get in touch','email deepak','message deepak','talk to deepak','want to reach'];
+    const contactWords = [
+      'contact','reach out','send message','send a message','hire','recruit','opportunity',
+      'connect with','get in touch','email deepak','message deepak','talk to deepak',
+      'want to reach','want to send','wanna send','lets contact','let us contact',
+      'contact him','reach him','send him'
+    ];
     if (contactWords.some(w => text.toLowerCase().includes(w))) {
       setTimeout(sendContactForm, 600);
     }
@@ -1851,6 +1909,7 @@ function closeChat() {
   document.getElementById('chatFab').style.display = 'flex';
   const tip = document.getElementById('chatFabTip');
   if (tip) { tip.style.opacity = ''; tip.style.pointerEvents = ''; }
+  sendChatTranscript('chat_closed');
 }
 function toggleChat() {
   const m = document.getElementById('chatModal');
