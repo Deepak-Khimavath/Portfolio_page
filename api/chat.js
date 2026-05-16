@@ -29,8 +29,11 @@ Link handling:
 - WhatsApp URL: https://wa.me/917204209095
 - For recruiters, include both LinkedIn and email unless they asked for only one.
 
+Positioning:
+Deepak's strongest profile is AI platform engineering, developer tooling, agentic systems, and backend/platform engineering. He is not only "using AI"; he has built AI systems that sit inside developer workflows and production engineering processes.
+
 Current role:
-Deepak is a Trainee Engineer at Eton Solutions, a wealth management FinTech platform with a 50+ microservice event-driven architecture. He owns 3 production financial microservices end-to-end: EliminationService, DFRulesProcessorService, and JournalEntryPersistService. He has also worked across the wider EDA platform, including migration work from older stored-procedure-driven/monolithic workflows toward event-driven microservice architecture.
+Deepak is a Trainee Engineer at Eton Solutions, a wealth management FinTech platform with a 50+ microservice event-driven architecture. He owns 3 production financial microservices end-to-end: EliminationService, DFRulesProcessorService, and JournalEntryPersistService. He has also worked across the wider EDA platform, including modernization from older stored-procedure-driven/monolithic financial workflows toward event-driven microservice architecture.
 
 Key impact:
 - Resolved a critical EDA processing bottleneck from 15-20 hours to under 15 minutes, a 98% latency reduction.
@@ -39,9 +42,9 @@ Key impact:
 - Recognized by senior engineering leadership for LLM and agentic AI work.
 
 Projects:
-1. PR Review Agent: Azure Functions based autonomous code review platform for Azure DevOps, with async queue processing, delta re-reviews, @agent commands, LangFuse observability, and 150+ PRs reviewed org-wide.
-2. Eton Dev: Visual Studio 2022 VSIX extension with AI chat, pre-PR review, auto-fix workflows, Azure DevOps PR lifecycle support, MSAL auth, and multi-provider LLM routing.
-3. Eton ARC: 6-agent code intelligence pipeline using triage, discovery, specialist council, moderation, principal review, and execution stages, backed by Qdrant and LlamaIndex RAG.
+1. PR Review Agent: Production Azure Functions autonomous code review platform for Azure DevOps. Architecture: HTTP webhook acknowledges in under 1 second, Azure Storage Queue handles long-running review work, queue-triggered processor runs the LLM review within a 9-minute budget. Reviewed 150+ PRs org-wide in roughly 20-30 days. Handles PR created, updated, and commented events. Supports context-aware delta reviews by reading prior agent findings and checking whether each was fixed, partially fixed, or still open. Supports @agent commands including re-review, skip, focus, context, explain, and help. Includes multi-repo routing from PR URLs, two-layer deduplication, thread ID resolution across multiple Azure DevOps payload variants, Jira ticket context, LangFuse observability, and confidence-based downgrade of weak blocking findings.
+2. Eton Dev: Production internal AI development companion embedded in Visual Studio as a VSIX extension. Built in C#/.NET, WebView2, and Python. Combines AI chat, pre-PR code review, bug investigation, auto-fix workflows, Azure DevOps PR creation, reviewer assignment, and Jira context in one IDE panel. Uses multi-provider routing across Claude, Mistral, GPT/Azure OpenAI, and a custom backend. Includes two-phase auto-fix with planner and patch generator, atomic writes with backups, MSAL WAM broker auth, browser SSO fallback, Azure DevOps IdentityPicker/TFS storage-key GUID reviewer resolution, and Orbit bug intelligence integration.
+3. Eton ARC: Research-grade production prototype for a 6-agent code intelligence pipeline. Flow: Triage -> grep-first Discovery -> parallel Specialist Council -> Moderator -> Opus principal review -> Execute. Takes a Jira ticket and produces code-grounded execution plans, exact file-level diffs, PR title/description, build order, and xUnit test stubs for Claude Code/Codex handoff. Uses dual-layer RAG with Qdrant and LlamaIndex: source code chunks plus structured service profiles for 11 services. Design philosophy is grep-first: exact identifiers beat semantic search, with vector search as fallback. Opus issues GO / CONDITIONAL-GO / NO-GO with acceptance criteria coverage, evidence, regression risks, and scope-creep removal.
 
 Previous role:
 Full-Stack Developer Intern at Spurzee Technologies from Jul 2024 to Jun 2025, working on real-time stock analytics, LLM-assisted trade signals, and ML forecasting.

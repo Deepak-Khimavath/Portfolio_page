@@ -852,11 +852,6 @@ footer{
   color:var(--muted);cursor:pointer;transition:all .2s;
 }
 .chat-modal-sugs .sug:hover{border-color:var(--cyan);color:var(--cyan);}
-.chat-privacy{
-  padding:0 16px 10px;
-  font-size:.64rem;color:var(--dim);font-family:var(--font-m);
-  line-height:1.45;
-}
 
 @media(max-width:600px){
   .chat-modal{width:calc(100vw - 24px);height:min(76vh,640px);bottom:86px;right:12px;}
@@ -981,7 +976,7 @@ footer{
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-p">View My Work</a>
-        <a href="assets/Deepak_Khimavath_Resume_MASTER_v3.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
+        <a href="assets/Deepak_Khimavath_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
         <a href="javascript:void(0)" onclick="toggleChat()" class="btn-s">Ask AI About Me ↗</a>
       </div>
       <div class="hero-metrics">
@@ -1056,7 +1051,7 @@ footer{
       <div class="about-text rv d1">
         <p class="about-p">I'm an <strong>AI Platform & Developer Tools Engineer</strong> who builds production systems, not demos. I specialize in the intersection of <span class="hl">agentic AI</span>, <span class="hl">developer tooling</span>, and <span class="hl">distributed FinTech infrastructure</span> — systems where architecture, reliability, and scale actually matter.</p>
         <p class="about-p">Currently at <strong>Eton Solutions</strong> as a Trainee Engineer, I build internal AI tooling for engineering workflows — a multi-provider LLM Visual Studio extension, a serverless autonomous PR review agent, and a 6-agent hierarchical code pipeline backed by a dual-layer RAG system.</p>
-        <p class="about-p">On the infrastructure side, I own three production financial microservices inside a <span class="hl">50+ microservice event-driven architecture</span>, and I have worked across the wider EDA platform. I resolved a critical processing bottleneck from <strong>15–20 hours to under 15 minutes</strong> across the distributed system, with recognition from senior engineering leadership for the AI platform work.</p>
+        <p class="about-p">On the infrastructure side, I own three production financial microservices inside a <span class="hl">50+ microservice event-driven architecture</span>, and I have worked on modernization from older stored-procedure-driven workflows toward event-driven service flows. I resolved a critical processing bottleneck from <strong>15–20 hours to under 15 minutes</strong> across the distributed system, with recognition from senior engineering leadership for the AI platform work.</p>
         <div class="stack-label">Core Stack</div>
         <div class="stack-wrap">
           <span class="stag">Python</span><span class="stag">C# / .NET</span><span class="stag">JavaScript</span>
@@ -1116,6 +1111,7 @@ footer{
           <li>Built internal <strong>AI platform tooling</strong> for engineering workflows — a VS extension, autonomous PR reviewer, and 6-agent code pipeline. Recognized by <strong>Director of Engineering & Chief Solution Architect</strong> for LLM and agentic AI work.</li>
           <li>Resolved a critical EDA bottleneck: <span class="perf">15–20 hours → 15 minutes</span> across a 50+ microservice distributed system — a 98% latency reduction with zero regression.</li>
           <li>End-to-end ownership of three production financial microservices inside the wider 50+ service EDA platform: <strong>EliminationService</strong> (trade logic), <strong>DFRulesProcessorService</strong> (rules engine), <strong>JournalEntryPersistService</strong> (ledger persistence).</li>
+          <li>Worked on modernization from older stored-procedure-driven financial processing toward event-driven microservice flows, including routing, queue-based processing, and service-boundary reasoning.</li>
           <li>Built a <strong>serverless PR Review Agent</strong> on Azure Functions that autonomously reviewed <span class="perf">150+ pull requests org-wide</span> — with delta re-reviews, @agent command system, and LangFuse observability.</li>
           <li>Built <strong>Eton Dev</strong> — a VS 2022 VSIX extension embedding multi-provider LLM routing (Claude, Mistral, GPT-4), code review, auto-fix pipeline, and full Azure DevOps PR lifecycle in one panel.</li>
           <li>Designed <strong>Eton ARC</strong> — a 6-agent hierarchical code pipeline (Triage → Discovery → Specialist Council → Moderator → Opus → Execute) backed by a dual-layer Qdrant + LlamaIndex RAG system.</li>
@@ -1405,7 +1401,6 @@ footer{
     <span class="sug" onclick="sendSug(this)">Deepak's GitHub & LinkedIn →</span>
     <span class="sug" onclick="sendContactForm()">📬 Send a message to Deepak</span>
   </div>
-  <div class="chat-privacy">AI chat may be shared with Deepak so he can understand visitor questions and follow up.</div>
   <div class="chat-modal-foot">
     <input class="chat-modal-input" id="chatIn" placeholder="Ask about Deepak's work..." onkeydown="if(event.key==='Enter')sendMsg()"/>
     <button class="chat-modal-send" id="chatBtn" onclick="sendMsg()">Send</button>
@@ -1693,9 +1688,25 @@ async function sendChatTranscript(reason) {
   transcriptSent = true;
   clearTimeout(transcriptTimer);
 
+  const timestamp = new Date().toLocaleString('en-IN', {
+    timeZone: 'Asia/Kolkata',
+    dateStyle: 'medium',
+    timeStyle: 'short'
+  });
   const transcript = chatHistory
-    .map((m, i) => `${i + 1}. ${m.role.toUpperCase()}: ${m.content}`)
-    .join('\n\n');
+    .map((m, i) => `${i + 1}. ${m.role.toUpperCase()}\n${m.content}`)
+    .join('\n\n---\n\n');
+  const htmlTranscript = chatHistory
+    .map((m, i) => {
+      const role = m.role === 'user' ? 'Visitor' : 'Deepak AI';
+      const color = m.role === 'user' ? '#2563eb' : '#0891b2';
+      return `
+        <div style="margin:18px 0;padding:14px 16px;border-left:4px solid ${color};background:#f8fafc;border-radius:8px">
+          <div style="font:600 12px Arial,sans-serif;color:${color};text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">${i + 1}. ${role}</div>
+          <div style="font:14px/1.6 Arial,sans-serif;color:#0f172a;white-space:pre-wrap">${escapeHtml(m.content)}</div>
+        </div>`;
+    })
+    .join('');
 
   try {
     await fetch(CHAT_TRANSCRIPT_URL, {
@@ -1704,8 +1715,26 @@ async function sendChatTranscript(reason) {
       body: JSON.stringify({
         name: 'Portfolio AI Chat',
         email: 'portfolio-agent@deepak.ai',
-        subject: 'Portfolio AI chat transcript',
-        message: `Reason: ${reason}\n\n${transcript}`
+        subject: `Portfolio AI chat transcript - ${timestamp}`,
+        message: `Portfolio AI Chat Transcript\n\nTime: ${timestamp}\nReason: ${reason}\nVisitor turns: ${userTurns}\nAI turns: ${aiTurns}\nPage: ${location.href}\n\n${transcript}`,
+        _subject: `Portfolio AI chat transcript - ${timestamp}`,
+        html: `
+          <div style="font-family:Arial,sans-serif;max-width:760px;margin:0 auto;color:#0f172a">
+            <div style="padding:20px 22px;background:#020617;color:#e2e8f0;border-radius:12px 12px 0 0">
+              <div style="font-size:18px;font-weight:700">Portfolio AI Chat Transcript</div>
+              <div style="font-size:13px;color:#94a3b8;margin-top:6px">Deepak Khimavath portfolio visitor conversation</div>
+            </div>
+            <div style="padding:18px 22px;border:1px solid #e2e8f0;border-top:0;border-radius:0 0 12px 12px">
+              <table style="width:100%;border-collapse:collapse;margin-bottom:18px;font:14px Arial,sans-serif">
+                <tr><td style="padding:6px 0;color:#64748b">Time</td><td style="padding:6px 0;font-weight:600">${timestamp}</td></tr>
+                <tr><td style="padding:6px 0;color:#64748b">Reason</td><td style="padding:6px 0;font-weight:600">${reason}</td></tr>
+                <tr><td style="padding:6px 0;color:#64748b">Visitor turns</td><td style="padding:6px 0;font-weight:600">${userTurns}</td></tr>
+                <tr><td style="padding:6px 0;color:#64748b">AI turns</td><td style="padding:6px 0;font-weight:600">${aiTurns}</td></tr>
+                <tr><td style="padding:6px 0;color:#64748b">Page</td><td style="padding:6px 0"><a href="${location.href}">${location.href}</a></td></tr>
+              </table>
+              ${htmlTranscript}
+            </div>
+          </div>`
       })
     });
   } catch (e) {
