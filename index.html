@@ -4,6 +4,16 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Deepak Khimavath — AI Platform Engineer</title>
+<meta name="description" content="Deepak Khimavath — AI Platform Engineer building production AI developer tooling, agentic systems, and event-driven FinTech infrastructure."/>
+<meta name="theme-color" content="#05080F"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Deepak Khimavath — AI Platform Engineer"/>
+<meta property="og:description" content="Production AI developer tooling, agentic systems, microservices ownership, and event-driven platform impact."/>
+<meta property="og:image" content="https://i.postimg.cc/qM4sF288/deepakkhimavathh.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Deepak Khimavath — AI Platform Engineer"/>
+<meta name="twitter:description" content="Production AI developer tooling, agentic systems, and event-driven FinTech infrastructure."/>
+<meta name="twitter:image" content="https://i.postimg.cc/qM4sF288/deepakkhimavathh.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ── DESIGN SYSTEM ────────────────────────────────────────────────── */
@@ -86,6 +96,22 @@ nav.scrolled{padding:14px 64px;}
   transition:background .3s,color .3s!important;
 }
 .nav-cta:hover{background:var(--cyan)!important;color:var(--bg)!important;}
+.magic-ai{
+  position:relative;padding:8px 14px;border-radius:999px;
+  color:var(--cyan)!important;isolation:isolate;overflow:hidden;
+}
+.magic-ai::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;
+  background:conic-gradient(from var(--spin,0deg),transparent 0 18%,var(--cyan),var(--violet),var(--blue),transparent 82% 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:magic-spin 3.6s linear infinite;opacity:.85;
+}
+.magic-ai::after{
+  content:'';position:absolute;inset:1px;border-radius:inherit;
+  background:rgba(0,229,255,.045);z-index:-1;
+}
+@keyframes magic-spin{to{--spin:360deg;}}
 .nav-toggle{
   display:none;width:38px;height:38px;border:1px solid var(--border);
   border-radius:6px;background:rgba(13,21,38,.8);color:var(--ink);
@@ -310,6 +336,21 @@ section{padding:110px 64px;position:relative;}
 .ac-big{font-family:var(--font-d);font-weight:700;font-size:2.6rem;line-height:1;background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 .ac-lbl{color:var(--muted);font-size:.84rem;margin-top:5px;}
 .ac-sub{color:var(--ink);font-size:.78rem;margin-top:3px;font-family:var(--font-m);}
+
+/* ── PROOF ── */
+.proof-band{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:1px;margin:72px auto 0;max-width:1280px;
+  border:1px solid var(--border);background:var(--border2);border-radius:12px;overflow:hidden;
+}
+.proof-item{background:var(--bg3);padding:20px 18px;min-height:116px;}
+.proof-num{
+  font-family:var(--font-d);font-weight:700;font-size:1.8rem;line-height:1;
+  background:linear-gradient(135deg,var(--cyan),var(--blue));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.proof-label{font-family:var(--font-m);font-size:.62rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.1em;margin-top:9px;}
+.proof-text{font-size:.76rem;color:var(--muted);line-height:1.55;margin-top:6px;}
  
 /* ── EXPERIENCE ── */
 #experience{background:var(--bg);}
@@ -416,6 +457,20 @@ section{padding:110px 64px;position:relative;}
 .case-v{font-size:.78rem;line-height:1.55;color:var(--muted);}
 .case-v strong{color:var(--ink);font-weight:500;}
 
+.arch-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:64px;}
+.arch-card{
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  padding:24px;position:relative;overflow:hidden;
+}
+.arch-title{font-family:var(--font-d);font-weight:600;font-size:1rem;color:var(--ink);margin-bottom:14px;}
+.arch-flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+.arch-node{
+  padding:7px 10px;border:1px solid rgba(0,229,255,.16);border-radius:6px;
+  background:rgba(0,229,255,.045);font-family:var(--font-m);font-size:.66rem;color:var(--muted);
+}
+.arch-arrow{font-family:var(--font-m);color:var(--cyan);font-size:.72rem;}
+.arch-note{font-size:.78rem;color:var(--muted);line-height:1.65;margin-top:14px;}
+
 /* ── PROJECT MEDIA (featured cards) ── */
 .proj-card.feat .proj-card-inner{
   display:grid;
@@ -440,6 +495,16 @@ section{padding:110px 64px;position:relative;}
     0 0 40px rgba(0,229,255,.06);
   transition:box-shadow .4s,border-color .3s;
   border:1px solid rgba(255,255,255,.06);
+}
+.proj-media-frame::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;z-index:4;
+  background:conic-gradient(from var(--spin,0deg),transparent 0 22%,rgba(0,229,255,.9),rgba(129,140,248,.75),rgba(59,130,246,.8),transparent 78% 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;pointer-events:none;transition:opacity .25s ease;
+}
+.proj-media-frame:hover::before,.proj-media-frame:focus-within::before{
+  opacity:.9;animation:magic-spin 4.8s linear infinite;
 }
 .proj-media-frame.has-portrait{min-height:700px;}
 .proj-media-frame.has-portrait .proj-media-dots{bottom:14px;}
@@ -769,7 +834,15 @@ footer{
   .proj-card.feat{grid-column:span 1;}
   .sk-grid{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
+  .proof-band{grid-template-columns:1fr 1fr;}
   footer{flex-direction:column;gap:10px;text-align:center;}
+}
+@media(max-width:600px){.proof-band{grid-template-columns:1fr;}}
+@media(max-width:960px){.arch-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+  body{cursor:auto;}
+  .cursor,.cursor-ring{display:none;}
 }
 
 /* ── FLOATING CHAT WIDGET ── */
@@ -973,7 +1046,7 @@ footer{
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="javascript:void(0)" onclick="toggleChat()">Ask AI</a></li>
+    <li><a href="javascript:void(0)" onclick="toggleChat()" class="magic-ai">Ask AI</a></li>
     <li><a href="#contact" class="nav-cta">Contact</a></li>
   </ul>
 </nav>
@@ -1188,6 +1261,24 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- PROOF -->
+<section id="proof">
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="sec-chip">Proof signals</p>
+      <h2 class="sec-h">Delivered work, not demos.</h2>
+      <p class="sec-sub">Sanitized, recruiter-safe signals from production engineering and internal AI platform work.</p>
+    </div>
+    <div class="proof-band rv d1">
+      <div class="proof-item"><div class="proof-num">150+</div><div class="proof-label">PRs Reviewed</div><div class="proof-text">Production Azure DevOps review agent in org-wide use.</div></div>
+      <div class="proof-item"><div class="proof-num">20+</div><div class="proof-label">Internal Users</div><div class="proof-text">Engineering/product users on Eton Dev AI workflows.</div></div>
+      <div class="proof-item"><div class="proof-num">98%</div><div class="proof-label">Latency Reduced</div><div class="proof-text">EDA bottleneck reduced from 15-20 hours to under 15 minutes.</div></div>
+      <div class="proof-item"><div class="proof-num">3</div><div class="proof-label">Owned Services</div><div class="proof-text">Production financial microservices owned end-to-end.</div></div>
+      <div class="proof-item"><div class="proof-num">11</div><div class="proof-label">Indexed Services</div><div class="proof-text">Active R&D code intelligence pipeline over service context.</div></div>
+    </div>
+  </div>
+</section>
  
 <!-- PROJECTS -->
 <section id="projects">
@@ -1222,8 +1313,8 @@ footer{
           <div class="proj-card-media">
             <div class="proj-media-frame">
               <!-- 🔧 PR Review Agent screenshots -->
-              <img class="proj-media-img active" src="assets/images/pr-review1.png" alt="PR Review Agent dashboard"/>
-              <img class="proj-media-img" src="assets/images/pr-review2.png" alt="PR Review Agent review output"/>
+              <img class="proj-media-img active" src="assets/images/pr-review1.png" alt="PR Review Agent dashboard" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/pr-review2.png" alt="PR Review Agent review output" loading="lazy"/>
               <div class="proj-media-placeholder" id="prPlaceholder">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="6" width="32" height="36" rx="4" stroke="#3A4A60" stroke-width="2"/><path d="M16 18h16M16 24h12M16 30h8" stroke="#3A4A60" stroke-width="2" stroke-linecap="round"/></svg>
                 <span>Add PR Review screenshots</span>
@@ -1262,10 +1353,10 @@ footer{
           <div class="proj-card-media">
             <div class="proj-media-frame">
               <!-- 🔧 Eton Dev VSIX screenshots -->
-              <img class="proj-media-img active" src="assets/images/vs-extension.png" alt="Eton Dev VS Extension main view"/>
-              <img class="proj-media-img" src="assets/images/visualstudio_1st.png" alt="Eton Dev Visual Studio integration"/>
-              <img class="proj-media-img" src="assets/images/orbit.png" alt="Eton Dev Orbit feature"/>
-              <img class="proj-media-img" src="assets/images/orbit_investigation.png" alt="Eton Dev investigation tool"/>
+              <img class="proj-media-img active" src="assets/images/vs-extension.png" alt="Eton Dev VS Extension main view" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/visualstudio_1st.png" alt="Eton Dev Visual Studio integration" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/orbit.png" alt="Eton Dev Orbit feature" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/orbit_investigation.png" alt="Eton Dev investigation tool" loading="lazy"/>
               <div class="proj-media-placeholder" id="etonPlaceholder">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="36" height="36" rx="4" stroke="#3A4A60" stroke-width="2"/><path d="M16 16l8 8-8 8" stroke="#3A4A60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 <span>Add VS Extension screenshots</span>
@@ -1307,10 +1398,10 @@ footer{
           <div class="proj-card-media">
             <div class="proj-media-frame">
               <!-- 🔧 Eton ARC 6-Agent pipeline screenshots -->
-              <img class="proj-media-img active" src="assets/images/6model-1.png" alt="Eton ARC architecture overview"/>
-              <img class="proj-media-img" src="assets/images/6model-2.png" alt="Eton ARC agent workflow"/>
-              <img class="proj-media-img" src="assets/images/6model-3.png" alt="Eton ARC pipeline details"/>
-              <img class="proj-media-img" src="assets/images/6model-4.png" alt="Eton ARC system diagram"/>
+              <img class="proj-media-img active" src="assets/images/6model-1.png" alt="Eton ARC architecture overview" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/6model-2.png" alt="Eton ARC agent workflow" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/6model-3.png" alt="Eton ARC pipeline details" loading="lazy"/>
+              <img class="proj-media-img" src="assets/images/6model-4.png" alt="Eton ARC system diagram" loading="lazy"/>
               <div class="proj-media-placeholder" id="arcPlaceholder">
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="16" r="6" stroke="#3A4A60" stroke-width="2"/><circle cx="14" cy="32" r="6" stroke="#3A4A60" stroke-width="2"/><circle cx="34" cy="32" r="6" stroke="#3A4A60" stroke-width="2"/><path d="M24 22l-6 8M24 22l6 8" stroke="#3A4A60" stroke-width="2" stroke-linecap="round"/></svg>
                 <span>Add pipeline architecture images</span>
@@ -1371,6 +1462,60 @@ footer{
         </div>
       </div>
  
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE PATTERNS -->
+<section id="architecture">
+  <div class="sec-inner">
+    <div class="rv">
+      <p class="sec-chip">How I think</p>
+      <h2 class="sec-h">Sanitized architecture patterns</h2>
+      <p class="sec-sub">High-level patterns only. Company internals, client data, service names, repos, endpoints, and proprietary workflows are intentionally omitted.</p>
+    </div>
+    <div class="arch-grid">
+      <div class="arch-card rv d1">
+        <div class="arch-title">Async AI Review Pipeline</div>
+        <div class="arch-flow">
+          <span class="arch-node">Webhook</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Queue</span><span class="arch-arrow">→</span>
+          <span class="arch-node">LLM Review</span><span class="arch-arrow">→</span>
+          <span class="arch-node">PR Feedback</span>
+        </div>
+        <p class="arch-note">Designed to acknowledge source-control events quickly while long-running AI work happens safely in the background.</p>
+      </div>
+      <div class="arch-card rv d2">
+        <div class="arch-title">IDE-Native AI Tooling</div>
+        <div class="arch-flow">
+          <span class="arch-node">VSIX</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Local Backend</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Provider Router</span><span class="arch-arrow">→</span>
+          <span class="arch-node">DevOps APIs</span>
+        </div>
+        <p class="arch-note">Keeps review, debugging, AI chat, auto-fix, and PR workflows inside the developer's existing environment.</p>
+      </div>
+      <div class="arch-card rv d3">
+        <div class="arch-title">Ticket-To-Code Agent Flow</div>
+        <div class="arch-flow">
+          <span class="arch-node">Ticket</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Discovery</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Specialists</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Review Gate</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Execution Plan</span>
+        </div>
+        <p class="arch-note">Uses deterministic code search first, then retrieval and agent review to keep plans grounded in actual source context.</p>
+      </div>
+      <div class="arch-card rv d4">
+        <div class="arch-title">Legacy Flow Modernization</div>
+        <div class="arch-flow">
+          <span class="arch-node">Batch/SP Flow</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Events</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Idempotent Services</span><span class="arch-arrow">→</span>
+          <span class="arch-node">Observable Delivery</span>
+        </div>
+        <p class="arch-note">Moves long-running financial processing toward retry-safe, traceable, service-owned event flows.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1467,9 +1612,10 @@ footer{
     </div>
   </div>
   <div class="chat-modal-sugs" id="chatSugs">
-    <span class="sug" onclick="sendSug(this)">What's the architecture behind Eton Dev?</span>
-    <span class="sug" onclick="sendSug(this)">How does the 6-agent pipeline work?</span>
-    <span class="sug" onclick="sendSug(this)">What was the 98% latency fix?</span>
+    <span class="sug" onclick="sendSug(this)">Is Deepak a fit for AI platform roles?</span>
+    <span class="sug" onclick="sendSug(this)">What production systems has he shipped?</span>
+    <span class="sug" onclick="sendSug(this)">What should I ask him in an interview?</span>
+    <span class="sug" onclick="sendSug(this)">Explain the 98% latency fix</span>
     <span class="sug" onclick="sendSug(this)">Deepak's GitHub & LinkedIn →</span>
     <span class="sug" onclick="sendContactForm()">📬 Send a message to Deepak</span>
   </div>
@@ -1491,6 +1637,10 @@ footer{
         <h3 class="contact-h">Open to <span>great<br>opportunities</span></h3>
         <p class="contact-desc">AI platform roles, developer tooling, agentic systems, backend infrastructure — if it's technically challenging and impactful, I'm interested. Open to remote and relocation.</p>
         <div class="contact-items">
+          <a href="assets/Deepak_Khimavath_Resume.pdf" target="_blank" rel="noopener" class="contact-item">
+            <div class="ci-icon">📄</div>
+            <div><div class="ci-lbl">Resume</div><div class="ci-val">Open PDF</div></div>
+          </a>
           <a href="mailto:khimavathdeepak@gmail.com" class="contact-item">
             <div class="ci-icon">✉️</div>
             <div><div class="ci-lbl">Email</div><div class="ci-val">khimavathdeepak@gmail.com</div></div>
