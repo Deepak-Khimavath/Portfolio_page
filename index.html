@@ -875,7 +875,7 @@ footer{
 
 /* ── FAB TOOLTIP ── */
 .chat-fab-tip{
-  position:fixed;bottom:92px;right:28px;z-index:9997;
+  position:fixed;bottom:92px;right:28px;z-index:9998;
   background:var(--card);border:1px solid var(--border);
   border-radius:10px;padding:10px 14px;
   box-shadow:0 8px 32px rgba(0,0,0,.3);
@@ -991,7 +991,7 @@ footer{
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-p">View My Work</a>
-        <a href="assets/Deepak_Khimavath_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
+        <a href="assets/Deepak_Khimavath_Elite_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
         <a href="javascript:void(0)" onclick="toggleChat()" class="btn-s">Ask AI About Me ↗</a>
       </div>
       <div class="hero-metrics">
@@ -1909,20 +1909,27 @@ async function submitContactForm(btn) {
     status.textContent = '⚠️ Please fill in all fields';
     return;
   }
-  if (!email.includes('@')) {
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+  if (!emailOk) {
     status.style.display = 'block';
     status.style.color = 'var(--gold)';
-    status.textContent = '⚠️ Please enter a valid email';
+    status.textContent = '⚠️ Please enter a valid email like name@company.com';
     return;
   }
   btn.disabled = true;
   btn.textContent = 'Sending...';
   status.style.display = 'none';
   try {
+    const payload = new FormData();
+    payload.append('name', name);
+    payload.append('email', email);
+    payload.append('message', msg);
+    payload.append('_subject', 'Portfolio contact from AI chat');
+    payload.append('source', 'AI chat contact form');
     const res = await fetch('https://formspree.io/f/xgodgbao', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ name, email, message: msg })
+      body: payload,
+      headers: { 'Accept': 'application/json' }
     });
     if (res.ok) {
       btn.textContent = '✓ Sent!';
@@ -2009,16 +2016,22 @@ function toggleChat() {
 }
 
 // Chat stays as an explicit action so it does not cover the portfolio content.
-setTimeout(() => {
+function showChatNudge() {
   if (chatOpened) return;
   const fab = document.getElementById('chatFab');
   const tip = document.getElementById('chatFabTip');
-  if (fab) fab.classList.add('pulse');
+  if (fab) {
+    fab.classList.remove('pulse');
+    void fab.offsetWidth;
+    fab.classList.add('pulse');
+  }
   if (tip) tip.classList.add('show');
   setTimeout(() => {
     if (!chatOpened && tip) tip.classList.remove('show');
   }, 6500);
-}, 2200);
+}
+window.addEventListener('load', () => setTimeout(showChatNudge, 1600));
+setTimeout(showChatNudge, 3500);
 
 // ── FORMSPREE ─────────────────────────────────────────────────────────────────
 document.getElementById('contactForm').addEventListener('submit', async function(e) {
