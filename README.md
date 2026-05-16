@@ -41,5 +41,5 @@ The site entry point is `index.html`. The chat endpoint is `api/chat.js`, so the
 The resume link points to:
 
 ```text
-assets/Deepak_Khimavath_Elite_Resume.pdf
+assets/Deepak_Khimavath_Resume.pdf
 ```

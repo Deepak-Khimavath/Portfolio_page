@@ -391,6 +391,14 @@ section{padding:110px 64px;position:relative;}
   border-radius:100px;padding:4px 12px;margin-top:14px;
   font-family:var(--font-m);font-size:.67rem;color:var(--green);
 }
+.paper-link{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-top:16px;padding:9px 14px;border-radius:6px;
+  background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.22);
+  color:var(--cyan);font-family:var(--font-m);font-size:.7rem;
+  text-decoration:none;letter-spacing:.04em;transition:all .2s;
+}
+.paper-link:hover{background:rgba(0,229,255,.13);border-color:var(--cyan);color:var(--ink);}
 .case-study{
   margin-top:20px;border-top:1px solid var(--border);padding-top:18px;
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
@@ -991,7 +999,7 @@ footer{
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-p">View My Work</a>
-        <a href="assets/Deepak_Khimavath_Elite_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
+        <a href="assets/Deepak_Khimavath_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
         <a href="javascript:void(0)" onclick="toggleChat()" class="btn-s">Ask AI About Me ↗</a>
       </div>
       <div class="hero-metrics">
@@ -1342,13 +1350,13 @@ footer{
       <div class="proj-subgrid">
         <div class="proj-card rv d5">
           <div class="proj-icon">⚛️</div>
-          <div class="proj-chip">Research · Final Year</div>
+          <div class="proj-chip">Research · Published Paper</div>
           <div class="proj-name">Insurance Risk via Quantum Computing</div>
-          <div class="proj-desc">Peer-reviewed IJIRT research on insurance risk prediction using a hybrid quantum-classical approach with QSVM/Qiskit concepts, Flask-based insurance workflows, batch processing, and risk dashboards.</div>
+          <div class="proj-desc">Published IJIRT paper on insurance risk prediction using a hybrid quantum-classical approach with QSVM/Qiskit concepts, Flask-based insurance workflows, batch processing, and risk dashboards.</div>
           <div class="proj-stack">
-            <span class="stk">Qiskit</span><span class="stk">IBM Quantum</span><span class="stk">Python</span><span class="stk">Power BI</span>
+            <span class="stk">IJIRT 171735</span><span class="stk">Qiskit</span><span class="stk">IBM Quantum</span><span class="stk">Python</span><span class="stk">Flask</span>
           </div>
-          <a href="assets/IJIRT171735_PAPER.pdf" target="_blank" rel="noopener" class="proj-impact" style="text-decoration:none">✦ Read paper</a>
+          <a href="/assets/IJIRT171735_PAPER.pdf" target="_blank" rel="noopener" class="paper-link">Read Published Paper ↗</a>
         </div>
         <div class="proj-card rv d5">
           <div class="proj-icon">📈</div>
