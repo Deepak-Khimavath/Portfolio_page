@@ -391,6 +391,20 @@ section{padding:110px 64px;position:relative;}
   border-radius:100px;padding:4px 12px;margin-top:14px;
   font-family:var(--font-m);font-size:.67rem;color:var(--green);
 }
+.case-study{
+  margin-top:20px;border-top:1px solid var(--border);padding-top:18px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;
+}
+.case-point{
+  background:rgba(8,13,23,.7);border:1px solid var(--border2);
+  border-radius:8px;padding:12px 13px;
+}
+.case-k{
+  font-family:var(--font-m);font-size:.6rem;color:var(--cyan);
+  text-transform:uppercase;letter-spacing:.12em;margin-bottom:5px;
+}
+.case-v{font-size:.78rem;line-height:1.55;color:var(--muted);}
+.case-v strong{color:var(--ink);font-weight:500;}
 
 /* ── PROJECT MEDIA (featured cards) ── */
 .proj-card.feat .proj-card-inner{
@@ -480,6 +494,7 @@ section{padding:110px 64px;position:relative;}
   .proj-media-img.portrait{max-height:calc(100% - 56px);}
   .proj-media-img.landscape{width:calc(100% - 32px);max-width:calc(100% - 32px);}
   .proj-card.feat{padding:30px 24px;}
+  .case-study{grid-template-columns:1fr;}
 }
 /* ── LIGHTBOX ── */
 .media-lightbox{
@@ -1178,6 +1193,12 @@ footer{
               Serverless dual-function architecture on Azure Functions — HTTP trigger acknowledges Azure DevOps webhook in <strong>&lt;1 second</strong>; full LLM review runs async in queue-triggered processor with 9-minute budget. Handles <strong>150+ PRs org-wide</strong> with context-aware delta re-reviews, @agent command interface, and <strong>LangFuse observability</strong> tracing every LLM call. 900-line system prompt across 7 review dimensions with confidence-based finding downgrade and drop-in-ready code fixes.
             </div>
             <span class="proj-impact">✦ 150+ PRs reviewed autonomously in 30 days</span>
+            <div class="case-study">
+              <div class="case-point"><div class="case-k">Architecture</div><div class="case-v"><strong>HTTP trigger → Storage Queue → queue processor</strong>, keeping Azure DevOps webhooks under 1s while LLM review runs async.</div></div>
+              <div class="case-point"><div class="case-k">Hard Part</div><div class="case-v">Resolved Azure DevOps thread IDs across payload variants, with REST fallback to keep @agent replies nested correctly.</div></div>
+              <div class="case-point"><div class="case-k">Reliability</div><div class="case-v">Commit-keyed dedup, event normalization, confidence downgrades, and LangFuse traces for every LLM review path.</div></div>
+              <div class="case-point"><div class="case-k">Developer UX</div><div class="case-v">@agent commands for re-review, skip, focus, context, explain, and help directly inside PR threads.</div></div>
+            </div>
             <div class="proj-stack">
               <span class="stk">Python</span><span class="stk">Azure Functions</span><span class="stk">Azure DevOps</span>
               <span class="stk">Mistral / Claude / GPT-4</span><span class="stk">LangFuse</span><span class="stk">FastAPI</span>
@@ -1211,6 +1232,12 @@ footer{
             <div class="proj-name">Eton Dev — AI Development Companion (VS Extension)</div>
             <div class="proj-desc">
               VSIX extension for Visual Studio 2022 — AI chat, pre-PR code review, bug investigation, two-phase auto-fix engine, and full Azure DevOps PR lifecycle in one panel. Multi-provider LLM routing (Claude, Mistral, GPT-4), silent MSAL WAM broker auth with AAD auto-discovery, undocumented TFS GUID resolution.
+            </div>
+            <div class="case-study">
+              <div class="case-point"><div class="case-k">Workflow</div><div class="case-v">Consolidates review, AI chat, bug investigation, auto-fix, commit, and PR creation into one <strong>WebView2 VSIX panel</strong>.</div></div>
+              <div class="case-point"><div class="case-k">LLM Routing</div><div class="case-v">Protocol-based provider layer routes between Claude, Mistral, GPT/Azure OpenAI, and custom backends by repo context.</div></div>
+              <div class="case-point"><div class="case-k">Auto-Fix Safety</div><div class="case-v">Planner validates scope within ±3 lines; patch generator uses anchored old/new blocks with atomic writes and backups.</div></div>
+              <div class="case-point"><div class="case-k">Enterprise Auth</div><div class="case-v">MSAL WAM broker, browser SSO fallback, JIT JWT caching, and Azure DevOps IdentityPicker GUID resolution.</div></div>
             </div>
             <div class="proj-stack">
               <span class="stk">C# / .NET</span><span class="stk">WebView2</span><span class="stk">Python</span>
@@ -1251,6 +1278,12 @@ footer{
               Hierarchical AI pipeline: <strong>Triage (Haiku) → grep-first Discovery → parallel Specialist Council (Sonnet) → Moderator → Opus Principal Review → Execute</strong>. Takes a Jira ticket, produces verified file-level diffs and xUnit test stubs ready for Claude Code. Dual-layer RAG: Qdrant vector DB (80-line overlapping chunks, 384-dim embeddings, 11 services) + LlamaIndex retrieval pipeline. Opus issues <strong>GO / CONDITIONAL-GO / NO-GO</strong> with full AC coverage verification.
             </div>
             <span class="proj-impact">✦ Tested on live tickets · 11 production services indexed</span>
+            <div class="case-study">
+              <div class="case-point"><div class="case-k">Agent Flow</div><div class="case-v">Triage → grep-first Discovery → parallel Specialists → Moderator → Opus review → Execute, with developer gates.</div></div>
+              <div class="case-point"><div class="case-k">Retrieval</div><div class="case-v">Dual-layer Qdrant/LlamaIndex RAG: source chunks plus service profiles across <strong>11 services</strong>.</div></div>
+              <div class="case-point"><div class="case-k">Safety</div><div class="case-v">Opus produces GO / CONDITIONAL-GO / NO-GO with AC coverage, evidence, regression risk, and scope-creep removal.</div></div>
+              <div class="case-point"><div class="case-k">Output</div><div class="case-v">Generates exact file operations, PR descriptions, build order, and xUnit stubs for Claude Code/Codex handoff.</div></div>
+            </div>
             <div class="proj-stack">
               <span class="stk">Claude Opus 4.5</span><span class="stk">Sonnet / Haiku</span><span class="stk">Qdrant</span>
               <span class="stk">LlamaIndex</span><span class="stk">FastAPI</span><span class="stk">Python</span>
@@ -1280,15 +1313,37 @@ footer{
         </div>
       </div>
  
+      <div class="proj-card rv d4">
+        <div class="proj-icon">🔁</div>
+        <div class="proj-chip">Production · Backend Platform</div>
+        <div class="proj-name">EDA Latency Fix — SP-Driven Workflow to Event-Driven Services</div>
+        <div class="proj-desc">
+          Diagnosed and resolved a core routing bottleneck in a 50+ service event-driven financial platform, modernizing older stored-procedure-driven processing into service-owned flows with queue-based execution, idempotency, structured logging, and Dapper-backed persistence.
+        </div>
+        <span class="proj-impact">✦ 100K+ records · 15–20 hours → under 15 minutes</span>
+        <div class="case-study">
+          <div class="case-point"><div class="case-k">Problem</div><div class="case-v">Legacy financial processing created long-running batches and delayed downstream reporting/analytics.</div></div>
+          <div class="case-point"><div class="case-k">System</div><div class="case-v">Bank feed ingestion → validation → enrichment → journal entry creation → MS SQL persistence.</div></div>
+          <div class="case-point"><div class="case-k">Reliability</div><div class="case-v">Idempotent service flows, retry-safe processing, structured error handling, Azure Monitor/Logs, and CI/CD release discipline.</div></div>
+          <div class="case-point"><div class="case-k">Ownership</div><div class="case-v">Owned EliminationService, DFRulesProcessorService, and JournalEntryPersistService end-to-end.</div></div>
+        </div>
+        <div class="proj-stack">
+          <span class="stk">C# / .NET</span><span class="stk">Dapper DAL</span><span class="stk">MS SQL</span>
+          <span class="stk">Azure Event Grid</span><span class="stk">Azure Monitor</span><span class="stk">OAuth/JWT</span>
+          <span class="stk">Idempotency</span><span class="stk">Microservices</span>
+        </div>
+      </div>
+
       <div class="proj-subgrid">
-        <div class="proj-card rv d4">
+        <div class="proj-card rv d5">
           <div class="proj-icon">⚛️</div>
           <div class="proj-chip">Research · Final Year</div>
           <div class="proj-name">Insurance Risk via Quantum Computing</div>
-          <div class="proj-desc">Quantum Random Forest on IBM Quantum (Qiskit) for insurance risk assessment with stakeholder-facing dashboards.</div>
+          <div class="proj-desc">Peer-reviewed IJIRT research on insurance risk prediction using a hybrid quantum-classical approach with QSVM/Qiskit concepts, Flask-based insurance workflows, batch processing, and risk dashboards.</div>
           <div class="proj-stack">
             <span class="stk">Qiskit</span><span class="stk">IBM Quantum</span><span class="stk">Python</span><span class="stk">Power BI</span>
           </div>
+          <a href="assets/IJIRT171735_PAPER.pdf" target="_blank" rel="noopener" class="proj-impact" style="text-decoration:none">✦ Read paper</a>
         </div>
         <div class="proj-card rv d5">
           <div class="proj-icon">📈</div>
@@ -1348,8 +1403,10 @@ footer{
           <span class="sk-it">Event-driven architecture</span><span class="sk-it">Microservices</span>
           <span class="sk-it">Distributed systems</span><span class="sk-it">Message queues</span>
           <span class="sk-it">MSAL.NET / OAuth 2.0</span><span class="sk-it">WebView2</span>
+          <span class="sk-it">Idempotency</span><span class="sk-it">Retry-safe workflows</span>
+          <span class="sk-it">Dapper DAL</span><span class="sk-it">Azure Monitor / Logs</span>
           <span class="sk-it">VS SDK (WPF, VSCT)</span><span class="sk-it">PyTorch</span>
-          <span class="sk-it">sentence-transformers</span>
+          <span class="sk-it">sentence-transformers</span><span class="sk-it">MS SQL Server</span>
         </div>
       </div>
     </div>
