@@ -9,11 +9,11 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Deepak Khimavath — AI Platform Engineer"/>
 <meta property="og:description" content="Production AI developer tooling, agentic systems, microservices ownership, and event-driven platform impact."/>
-<meta property="og:image" content="https://i.postimg.cc/qM4sF288/deepakkhimavathh.png"/>
+<meta property="og:image" content="assets/images/deepak-khimavath.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Deepak Khimavath — AI Platform Engineer"/>
 <meta name="twitter:description" content="Production AI developer tooling, agentic systems, and event-driven FinTech infrastructure."/>
-<meta name="twitter:image" content="https://i.postimg.cc/qM4sF288/deepakkhimavathh.png"/>
+<meta name="twitter:image" content="assets/images/deepak-khimavath.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
 /* ── DESIGN SYSTEM ────────────────────────────────────────────────── */
@@ -462,6 +462,32 @@ section{padding:110px 64px;position:relative;}
 .tl-buls li::before{content:'→';position:absolute;left:0;color:var(--blue);font-size:.8rem;top:.05em;}
 .tl-buls li strong{color:var(--ink);font-weight:500;}
 .tl-buls li .perf{color:var(--cyan);font-family:var(--font-m);font-size:.88em;font-weight:500;}
+
+/* Timeline Product Showcase */
+.tl-product-showcase{margin-top:20px;}
+.tl-product-gallery{position:relative;border-radius:10px;overflow:hidden;background:var(--bg3);max-width:480px;}
+.tl-product-img{display:none;width:100%;height:auto;border-radius:10px;}
+.tl-product-img.active{display:block;}
+.tl-product-prev,.tl-product-next{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:32px;height:32px;border:none;border-radius:50%;
+  background:rgba(0,0,0,.5);color:#fff;font-size:1.1rem;
+  cursor:pointer;opacity:0;transition:opacity .2s;z-index:2;
+}
+.tl-product-gallery:hover .tl-product-prev,
+.tl-product-gallery:hover .tl-product-next{opacity:1;}
+.tl-product-prev{left:8px;}
+.tl-product-next{right:8px;}
+.tl-product-dots{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;
+}
+.tl-product-dot{
+  width:8px;height:8px;border-radius:50%;border:none;
+  background:rgba(255,255,255,.4);cursor:pointer;transition:background .2s;
+}
+.tl-product-dot.active{background:var(--primary);}
+
 .pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:20px;}
 .pill{
   padding:3px 11px;background:var(--bg3);border:1px solid var(--border2);
@@ -1159,6 +1185,247 @@ footer{
 }
 .contact-inchat-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(99,102,241,.3);}
 .contact-inchat-btn:disabled{opacity:.5;cursor:not-allowed;}
+
+/* ── EDITORIAL PORTFOLIO REDESIGN ───────────────────────────────────────── */
+:root{
+  --bg:#f5f2eb;--bg2:#fffefa;--bg3:#eeebe3;--card:#fffefa;
+  --border:rgba(35,39,33,.14);--border2:rgba(35,39,33,.09);
+  --ink:#20251f;--muted:#62685f;--dim:#898d83;
+  --primary:#bc4d32;--secondary:#bc4d32;--tertiary:#526a51;
+  --gold:#a97833;--green:#426b4c;--glow-p:rgba(188,77,50,.08);--glow-s:rgba(82,106,81,.08);
+  --cyan:#bc4d32;--blue:#526a51;--violet:#526a51;
+  --font-d:'Instrument Sans',sans-serif;--font-b:'Instrument Sans',sans-serif;--font-m:'JetBrains Mono',monospace;
+}
+html{scroll-padding-top:88px;}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-weight:400;line-height:1.65;cursor:auto;}
+body::after{display:none;}
+.cursor,.cursor-ring{display:none;}
+::selection{background:#e6c1b4;color:var(--ink);}
+nav{padding:20px max(5vw,28px);background:rgba(245,242,235,.94);border-bottom:1px solid var(--border2);backdrop-filter:blur(16px);}
+nav.scrolled{padding-top:14px;padding-bottom:14px;}
+.nav-logo{font-family:var(--font-b);font-size:.95rem;font-weight:700;letter-spacing:-.04em;color:var(--ink);}
+.nav-logo .dot{background:var(--primary);animation:none;}
+.nav-links{gap:30px;}
+.nav-links a{font-family:var(--font-b);font-size:.78rem;color:#5c6058;letter-spacing:.01em;text-transform:none;}
+.nav-links a:hover{color:var(--primary);}
+.nav-cta{padding:9px 17px;border:1px solid var(--ink);border-radius:3px;color:var(--ink)!important;}
+.nav-cta:hover{background:var(--ink)!important;color:var(--bg)!important;}
+.magic-ai{color:var(--primary)!important;padding:6px 0;}
+.magic-ai::before,.magic-ai::after{display:none;}
+.nav-toggle{border-color:var(--border);background:var(--bg2);color:var(--ink);}
+#hero{min-height:760px;min-height:min(900px,100svh);padding:108px max(5vw,28px) 76px;background:var(--bg);}
+.hero-grid,.hero-orb,.scroll-hint{display:none;}
+.hero-inner{max-width:1240px;grid-template-columns:minmax(0,1.3fr) minmax(290px,.7fr);gap:clamp(40px,8vw,120px);align-items:start;padding-top:clamp(20px,4vh,36px);}
+.hero-badge{padding:0;border:0;border-radius:0;background:none;margin-bottom:22px;font-family:var(--font-m);font-size:.67rem;color:#62665d;letter-spacing:.08em;text-transform:uppercase;opacity:1;transform:none;animation:none;}
+.hero-badge-dot{display:none;}
+.hero-name{font-family:var(--font-d);font-size:clamp(4.8rem,10vw,9.2rem);font-weight:600;line-height:.84;letter-spacing:-.09em;color:var(--ink);opacity:1;transform:none;animation:none;}
+.hero-name .line2{display:inline;color:var(--primary);background:none;-webkit-text-fill-color:currentColor;}
+.hero-type{font-family:var(--font-m);font-size:.82rem;color:var(--green);margin-top:25px;opacity:1;transform:none;animation:none;}
+.hero-type-prefix,.hero-type-cursor{color:var(--primary);}
+.hero-ask{display:none;}
+.hero-sub{max-width:590px;color:#555b52;font-size:1.04rem;line-height:1.85;margin:22px 0 26px;}
+.hero-sub strong{color:var(--ink);font-weight:600;}
+.hero-btns{gap:12px;}
+.btn-p,.btn-r,.btn-s{padding:12px 19px;border-radius:3px;font-family:var(--font-b);font-size:.84rem;font-weight:600;letter-spacing:0;}
+.btn-p{background:var(--ink);border:1px solid var(--ink);color:#fff;box-shadow:none;}
+.btn-p:hover{background:var(--primary);border-color:var(--primary);transform:translateY(-2px);box-shadow:none;}
+.btn-r{background:transparent;border:1px solid #b6b8ad;color:var(--ink);}
+.btn-r:hover,.btn-s:hover{border-color:var(--ink);color:var(--ink);background:transparent;}
+.btn-s{display:none;}
+.hero-metrics{max-width:610px;border-top:1px solid var(--border);margin-top:38px;padding-top:22px;gap:0;}
+.metric-val{font-family:var(--font-d);font-size:1.65rem;font-weight:600;color:var(--ink);}
+.metric-lbl{font-family:var(--font-b);font-size:.72rem;color:var(--muted);letter-spacing:0;}
+.hero-card{display:block;padding:27px;background:var(--bg2);border:1px solid var(--border);border-radius:4px;box-shadow:14px 14px 0 #e7e2d8;transform:none;}
+.hc-avatar{width:100%;height:290px;margin:0 0 24px;border-radius:3px;background:#dedbd2;}
+.hc-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 28%;border-radius:3px;}
+.hc-name{font-family:var(--font-d);font-size:1.45rem;font-weight:600;color:var(--ink);}
+.hc-title,.hc-loc{font-family:var(--font-b);font-size:.78rem;color:var(--muted);}
+.hc-loc{margin-top:6px;}
+.hc-divider{background:var(--border);margin:20px 0;}
+.hc-stat-n{font-family:var(--font-d);font-size:1.2rem;color:var(--primary);}
+.hc-stat-l{font-family:var(--font-b);font-size:.62rem;color:var(--muted);}
+.hc-tag{padding:5px 9px;background:#f1eee7;border:1px solid var(--border2);border-radius:2px;color:#53594f;font-family:var(--font-b);font-size:.66rem;}
+.hc-rec,.hc-building{background:#f4f1e9;border:0;border-left:2px solid var(--primary);border-radius:0;padding:12px 14px;}
+.hc-rec-label,.hc-building-label{font-family:var(--font-m);font-size:.59rem;color:var(--primary);}
+.hc-rec-text,.hc-building-text{font-size:.74rem;color:#555b52;}
+section{padding:clamp(76px,9vw,126px) max(5vw,28px);}
+.sec-inner{max-width:1160px;}
+.sec-chip{font-family:var(--font-m);font-size:.65rem;color:var(--primary);letter-spacing:.12em;margin-bottom:15px;}
+.sec-chip::before{content:'';width:24px;height:1px;background:var(--primary);}
+.sec-h{font-family:var(--font-d);font-size:clamp(2.5rem,5vw,4.4rem);font-weight:600;line-height:1;letter-spacing:-.065em;color:var(--ink);margin-bottom:18px;}
+.sec-h::after{display:none;}
+.sec-sub{max-width:620px;color:var(--muted);font-size:.98rem;line-height:1.8;}
+.rv{transform:translateY(20px);transition:opacity .55s ease,transform .55s ease;}
+#about,#projects,#skills{background:var(--bg2);}
+#experience,#proof,#architecture,#contact{background:var(--bg);}
+.about-grid{grid-template-columns:1.1fr .9fr;gap:clamp(38px,8vw,100px);margin-top:48px;}
+.about-p{font-size:.96rem;line-height:1.9;color:#555b52;}
+.about-p strong{color:var(--ink);font-weight:600;}
+.about-p .hl{font-family:var(--font-b);font-size:inherit;color:var(--primary);font-weight:600;}
+.stack-label{font-family:var(--font-m);font-size:.68rem;color:var(--muted);letter-spacing:.1em;}
+.stag{padding:6px 11px;background:transparent;border:1px solid var(--border);border-radius:2px;color:#53594f;font-family:var(--font-b);font-size:.7rem;}
+.stag:hover{background:#f5ebe6;border-color:#d6a999;color:var(--primary);transform:none;}
+.about-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.about-card{min-height:150px;background:#f5f2eb;border:1px solid var(--border2);border-radius:3px;padding:20px;}
+.about-card::after{display:none;}
+.about-card:hover{border-color:#d1a393;transform:translateY(-2px);}
+.ac-big{font-family:var(--font-d);font-size:2.35rem;font-weight:600;color:var(--primary);background:none;-webkit-text-fill-color:currentColor;}
+.ac-lbl{color:var(--ink);font-size:.78rem;font-weight:600;margin-top:10px;}
+.ac-sub{font-family:var(--font-b);font-size:.72rem;color:var(--muted);line-height:1.5;}
+#proof{padding-top:38px;padding-bottom:38px;}
+.proof-band{grid-template-columns:repeat(5,minmax(0,1fr));gap:0;border:1px solid var(--border);border-radius:3px;background:var(--bg2);}
+.proof-item{min-height:145px;padding:22px 18px;background:var(--bg2);border-right:1px solid var(--border2);}
+.proof-item:last-child{border-right:0;}
+.proof-num{font-family:var(--font-d);font-weight:600;font-size:2rem;color:var(--primary);background:none;-webkit-text-fill-color:currentColor;}
+.proof-label{font-family:var(--font-m);font-size:.58rem;color:var(--ink);letter-spacing:.06em;}
+.proof-text{font-size:.72rem;color:var(--muted);}
+.timeline{margin-top:54px;padding-left:0;}
+.tl-line{left:5px;background:var(--border);}
+.tl-item{padding:0 0 0 38px;margin-bottom:54px;}
+.tl-dot{left:-2px;width:15px;height:15px;background:var(--bg);border:2px solid var(--primary);box-shadow:none;}
+.tl-item:hover .tl-dot{box-shadow:0 0 0 4px rgba(188,77,50,.12);}
+.tl-period{font-family:var(--font-m);font-size:.66rem;color:var(--primary);letter-spacing:.04em;}
+.tl-badge{background:#f2e9e4;border:0;border-radius:2px;padding:3px 9px;}
+.tl-badge.cur{background:#e8eee6;border:0;color:var(--green);}
+.tl-role{font-family:var(--font-d);font-size:1.38rem;font-weight:600;color:var(--ink);}
+.tl-co{font-size:.86rem;color:var(--muted);}
+.tl-buls li{font-size:.89rem;color:#555b52;line-height:1.8;}
+.tl-buls li::before{content:'—';color:var(--primary);}
+.tl-buls li strong{color:var(--ink);font-weight:600;}
+.tl-buls li .perf{font-family:var(--font-b);color:var(--primary);font-weight:600;}
+.pill{padding:4px 9px;background:#eeebe3;border:0;border-radius:2px;color:#5e635a;font-family:var(--font-b);font-size:.65rem;}
+#projects .proj-grid{gap:22px;margin-top:48px;}
+.proj-subgrid{gap:18px;}
+.proj-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:26px;box-shadow:none;}
+.proj-card::before{display:none;}
+.proj-card:hover{transform:translateY(-3px);border-color:#c7a397;box-shadow:0 12px 28px rgba(43,38,31,.07);}
+.proj-card.feat{padding:30px;}
+.proj-card.feat .proj-card-inner{grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:38px;}
+.proj-icon{font-size:1.4rem;margin-bottom:12px;}
+.proj-chip{font-family:var(--font-m);font-size:.59rem;color:var(--primary);letter-spacing:.07em;}
+.proj-name{font-family:var(--font-d);font-size:1.38rem;font-weight:600;color:var(--ink);letter-spacing:-.025em;}
+.proj-desc{font-size:.88rem;line-height:1.8;color:#5b6057;}
+.proj-desc strong{color:var(--ink);font-weight:600;}
+.proj-impact{background:#edf1e9;border:0;border-radius:2px;padding:6px 10px;font-family:var(--font-b);font-size:.68rem;color:#426b4c;}
+.proj-stack{gap:6px;}
+.stk{padding:4px 9px;background:#f1eee7;border:0;border-radius:2px;color:#53594f;font-family:var(--font-b);font-size:.66rem;}
+.stk:hover{background:#f5ebe6;color:var(--primary);}
+.case-study{border-color:var(--border2);}
+.case-point{background:#f7f4ed;border:0;border-radius:2px;padding:11px;}
+.case-k{font-size:.57rem;color:var(--primary);}
+.case-v{font-size:.75rem;color:#5b6057;}
+.case-v strong{color:var(--ink);font-weight:600;}
+.proj-media-frame,.proj-media-frame.has-portrait{min-height:390px;background:#e9e5dc;border:1px solid var(--border2);border-radius:3px;padding:14px;box-shadow:none;}
+.proj-media-frame::before{display:none;}
+.proj-card:hover .proj-media-frame{border-color:var(--border);box-shadow:none;}
+.proj-media-img{max-width:calc(100% - 28px);max-height:calc(100% - 28px);}
+.proj-media-img.portrait{max-height:calc(100% - 36px);}
+.proj-media-arrow{opacity:1;background:rgba(32,37,31,.72);}
+.proj-media-dot{background:rgba(32,37,31,.28);}
+.proj-media-dot.active{background:var(--primary);}
+.paper-link{background:#f5ebe6;border:1px solid #e7cfc5;border-radius:2px;color:var(--primary);font-family:var(--font-b);font-size:.72rem;}
+.arch-grid{gap:12px;margin-top:44px;}
+.arch-card{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:22px;}
+.arch-title{font-family:var(--font-d);font-size:1.08rem;color:var(--ink);}
+.arch-node{padding:6px 9px;border:1px solid var(--border);border-radius:2px;background:#f4f1e9;color:#51574e;font-family:var(--font-b);font-size:.68rem;}
+.arch-arrow{color:var(--primary);}
+.arch-note{font-size:.78rem;color:var(--muted);}
+.sk-grid{gap:12px;margin-top:44px;}
+.sk-card{background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:23px;}
+.sk-card:hover{border-color:#c7a397;}
+.sk-title{font-family:var(--font-m);font-size:.65rem;letter-spacing:.08em;color:var(--primary);}
+.sk-title::after{background:var(--border);}
+.sk-it{padding:5px 10px;background:#f5f2eb;border:1px solid var(--border2);border-radius:2px;color:#52584f;font-size:.73rem;}
+.sk-it:hover{background:#f5ebe6;border-color:#d6a999;transform:none;}
+#contact{background:#eae6dc;}
+.contact-grid{gap:clamp(32px,7vw,90px);margin-top:44px;}
+.contact-h{font-family:var(--font-d);font-size:clamp(2.3rem,4vw,3.8rem);font-weight:600;line-height:1;letter-spacing:-.06em;color:var(--ink);}
+.contact-h span{color:var(--primary);background:none;-webkit-text-fill-color:currentColor;}
+.contact-desc{color:#5b6057;line-height:1.8;font-size:.92rem;}
+.contact-items{gap:8px;}
+.contact-item{padding:12px 14px;background:rgba(255,254,250,.7);border:1px solid rgba(35,39,33,.12);border-radius:3px;}
+.contact-item:hover{border-color:#c7a397;transform:translateX(3px);background:#fffefa;}
+.ci-icon{width:32px;height:32px;border-radius:2px;background:#f2e9e4;font-size:.85rem;}
+.ci-lbl{font-size:.6rem;color:var(--muted);}
+.ci-val{font-size:.82rem;color:var(--ink);overflow-wrap:anywhere;}
+.contact-form{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:clamp(22px,4vw,36px);}
+.cf-title{font-family:var(--font-d);font-size:1.28rem;color:var(--ink);}
+.fg label{font-family:var(--font-m);font-size:.62rem;color:#666b61;}
+.fg input,.fg textarea{background:#faf8f2;border:1px solid var(--border);border-radius:2px;color:var(--ink);}
+.fg input:focus,.fg textarea:focus{border-color:var(--primary);box-shadow:0 0 0 3px rgba(188,77,50,.08);}
+.cf-btn{background:var(--ink);border-radius:2px;box-shadow:none;font-family:var(--font-b);font-weight:600;letter-spacing:0;}
+.cf-btn:hover{background:var(--primary);transform:translateY(-1px);box-shadow:none;}
+footer{padding:25px max(5vw,28px);background:#20251f;border-top:0;}
+.fl{font-family:var(--font-b);font-size:.84rem;color:#f5f2eb;font-weight:600;}
+.fl span{color:#df8a6e;}
+.fr,.footer-tagline{font-family:var(--font-b);font-size:.72rem;color:#c1c4ba;letter-spacing:0;}
+.footer-tagline{color:#9fa398;}
+.chat-fab{background:var(--ink);border:1px solid var(--ink);border-radius:3px;color:#fff;box-shadow:0 7px 20px rgba(32,37,31,.2);font-family:var(--font-b);font-size:.78rem;}
+.chat-fab:hover{background:var(--primary);border-color:var(--primary);box-shadow:0 8px 22px rgba(32,37,31,.2);}
+.chat-fab-text{color:#fff;}
+.chat-fab-dot{background:#8db394;}
+.chat-fab-shortcut{color:#d0d3ca;}
+.chat-fab-tip,.chat-modal,.chat-modal-header,.chat-modal-body,.chat-modal-foot,.chat-modal-input,.chat-modal-sugs .sug,.contact-inchat,.contact-inchat .fg input,.contact-inchat .fg textarea{background:#fffefa;color:var(--ink);}
+.chat-modal{border:1px solid var(--border);border-radius:4px;box-shadow:0 22px 70px rgba(32,37,31,.2);}
+.chat-modal-header,.chat-modal-foot{border-color:var(--border);}
+.chat-modal-input{border-color:var(--border);}
+.chat-modal-send,.contact-inchat-btn{background:var(--ink);border-radius:2px;}
+.chat-modal-sugs .sug{font-family:var(--font-b);border-color:var(--border);border-radius:2px;color:var(--muted);}
+.chat-modal-sugs .sug:hover{border-color:var(--primary);color:var(--primary);}
+.chat-modal-hstatus,.chat-modal-hstatus::before{color:var(--green);}
+.chat-modal-hname,.cf-title{color:var(--ink);}
+.chat-modal-body .msg.ai .msg-bubble{background:#f1eee7;border-color:var(--border2);color:#4e544b;}
+.chat-modal-body .msg.user .msg-bubble{background:#f5ebe6;border-color:#ead5cb;color:var(--ink);}
+.chat-modal-body .msg-bubble strong{color:var(--ink);}
+.chat-modal-body .msg-bubble a{color:var(--primary);}
+.chat-overlay{background:rgba(32,37,31,.35);}
+.media-lightbox{background:rgba(22,25,21,.94);}
+
+@media(max-width:960px){
+  nav,nav.scrolled{padding-left:28px;padding-right:28px;}
+  .nav-links{left:28px;right:28px;background:var(--bg2);border:1px solid var(--border);border-radius:3px;box-shadow:0 18px 45px rgba(32,37,31,.12);}
+  .nav-links a{padding:12px 14px;color:var(--ink);}
+  #hero{min-height:auto;padding-top:132px;padding-bottom:80px;}
+  .hero-inner{grid-template-columns:1fr;gap:42px;}
+  .hero-card{display:grid;grid-template-columns:150px 1fr;column-gap:20px;align-items:center;box-shadow:8px 8px 0 #e7e2d8;}
+  .hc-avatar{grid-row:span 5;width:150px;height:180px;margin:0;}
+  .hc-divider{grid-column:1/-1;width:100%;}
+  .hc-stat-row,.hc-tag-row,.hc-rec,.hc-building{grid-column:1/-1;}
+  .about-grid{grid-template-columns:1fr;}
+  .proof-band{grid-template-columns:repeat(3,minmax(0,1fr));}
+  .proof-item{border-bottom:1px solid var(--border2);}
+  .proj-card.feat .proj-card-inner{grid-template-columns:1fr;}
+  .proj-card-text{max-width:none;}
+  .proj-media-frame,.proj-media-frame.has-portrait{min-height:400px;}
+  .sk-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .contact-grid{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  section{padding-top:76px;padding-bottom:76px;}
+  #hero{padding-top:118px;padding-bottom:68px;}
+  .hero-name{font-size:clamp(4.1rem,17vw,6.5rem);}
+  .hero-card{display:block;padding:20px;}
+  .hc-avatar{width:100%;height:260px;margin:0 0 20px;}
+  .hero-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));row-gap:18px;}
+  .about-cards{grid-template-columns:1fr 1fr;gap:9px;}
+  .about-card{min-height:138px;padding:15px;}
+  .ac-big{font-size:1.9rem;}
+  .proof-band{grid-template-columns:1fr 1fr;}
+  .proof-item{min-height:130px;border-right:1px solid var(--border2);}
+  .proof-item:last-child{grid-column:1/-1;border-right:0;}
+  .tl-item{padding-left:30px;}
+  .proj-card,.proj-card.feat{padding:21px;}
+  .proj-subgrid{grid-template-columns:1fr;}
+  .proj-media-frame,.proj-media-frame.has-portrait{min-height:300px;}
+  .case-study{grid-template-columns:1fr;}
+  .arch-grid,.sk-grid{grid-template-columns:1fr;}
+  .contact-h{font-size:2.65rem;}
+  .chat-fab{bottom:16px;right:16px;}
+  footer{padding-left:22px;padding-right:22px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;}
+}
 </style>
 </head>
 <body>
@@ -1195,7 +1462,7 @@ footer{
     <div class="hero-content">
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
-        Available for opportunities
+        Founder & CEO · Kryex Labs
       </div>
       <h1 class="hero-name">
         Deepak<br>
@@ -1221,7 +1488,8 @@ footer{
       </p>
       <div class="hero-btns">
         <a href="#projects" class="btn-p">View My Work</a>
-        <a href="assets/Deepak_Khimavath_Resume.pdf" class="btn-r" target="_blank" rel="noopener">Resume</a>
+        <!-- Resume link hidden on site; PDF kept in assets/ -->
+        <a href="assets/Deepak_Khimavath_Resume.pdf" class="btn-r" target="_blank" rel="noopener" style="display:none" hidden aria-hidden="true">Resume</a>
         <a href="javascript:void(0)" onclick="toggleChat()" class="btn-s">Ask AI About Me ↗</a>
       </div>
       <div class="hero-metrics">
@@ -1246,13 +1514,14 @@ footer{
  
     <div class="hero-card rv">
       <div class="hc-avatar">
-        <img src="https://i.postimg.cc/qM4sF288/deepakkhimavathh.png"
-             alt="Deepak"
+        <img src="assets/images/deepak-khimavath.png"
+             alt="Deepak Khimavath"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
         <div class="hc-avatar-fallback" style="display:none">DK</div>
       </div>
       <div class="hc-name">Deepak Khimavath</div>
-      <div class="hc-title">// Trainee Engineer @ Eton Solutions</div>
+      <div class="hc-title">// Founder & CEO · Kryex Labs</div>
+      <a class="hc-title" href="https://www.kryexlabs.com/" target="_blank" rel="noopener">Company ↗</a>
       <div class="hc-loc">📍 Bengaluru, Karnataka, India</div>
       <div class="hc-divider"></div>
       <div class="hc-stat-row">
@@ -1282,8 +1551,8 @@ footer{
         <div class="hc-rec-text">Recognized by Director of Engineering & Chief Solution Architect for production AI tooling, agentic workflows, and platform impact.</div>
       </div>
       <div class="hc-building">
-        <div class="hc-building-label">Currently Building</div>
-        <div class="hc-building-text">AI Companion — a psychological partner that lives in your daily conversations. Not an assistant. A presence.</div>
+<div class="hc-building-label">Building Kryex Labs</div>
+         <div class="hc-building-text">Self-hosted AI coding agents for regulated enterprises. The agent never holds credentials; customer-side policy checks guard every database and MCP call.</div>
       </div>
     </div>
   </div>
@@ -1303,8 +1572,9 @@ footer{
     <div class="about-grid">
       <div class="about-text rv d1">
         <p class="about-p">I'm an <strong>AI Platform & Developer Tools Engineer</strong> who builds production systems, not demos. I specialize in the intersection of <span class="hl">agentic AI</span>, <span class="hl">developer tooling</span>, and <span class="hl">distributed FinTech infrastructure</span> — systems where architecture, reliability, and scale actually matter.</p>
-        <p class="about-p">Currently at <strong>Eton Solutions</strong> as a Trainee Engineer, I build internal AI tooling for engineering workflows — a production serverless PR review agent, <strong>Eton Dev</strong> used by 20+ engineering and product users, and an active R&D 6-agent code pipeline backed by a dual-layer RAG system.</p>
-        <p class="about-p">On the infrastructure side, I own three production financial microservices inside a <span class="hl">50+ microservice event-driven architecture</span>, and I have worked on modernization from older stored-procedure-driven workflows toward event-driven service flows. I resolved a critical processing bottleneck from <strong>15–20 hours to under 15 minutes</strong> across the distributed system, with recognition from senior engineering leadership for the AI platform work.</p>
+        <p class="about-p">I'm the <strong>Founder & CEO of Kryex Labs</strong>, building full-time for regulated enterprises. Our first product, <a href="https://www.kryexlabs.com/" target="_blank" rel="noopener"><strong>Kryex Code</strong></a>, is a self-hosted coding agent designed so the agent never holds credentials: database and MCP calls pass through a customer-side server that checks the user's access before execution.</p>
+        <p class="about-p">As founding engineer, I built the platform end to end: desktop client, self-hosted control plane, credential vault, policy engine, and customer-owned audit trail. Kryex Code runs in a VPC or fully air-gapped, supports any model, and is shipped on Mac and Windows. <a href="https://www.kryexlabs.com/download" target="_blank" rel="noopener"><strong>Download Kryex Code ↗</strong></a></p>
+        <p class="about-p">Previously, at <strong>Eton Solutions (July 2025 – August 2026)</strong>, I worked on production AI developer tooling and three financial microservices in a <span class="hl">50+ microservice event-driven architecture</span>. As part of the team, I worked on diagnosing and fixing a processing bottleneck that took workloads from <strong>15–20 hours to under 15 minutes</strong>.</p>
         <div class="stack-label">Core Stack</div>
         <div class="stack-wrap">
           <span class="stag">Python</span><span class="stag">C# / .NET</span><span class="stag">JavaScript</span>
@@ -1318,7 +1588,7 @@ footer{
         <div class="about-card">
           <div class="ac-big">15→15m</div>
           <div class="ac-lbl">Performance Impact</div>
-          <div class="ac-sub">100K+ records: 15–20 hrs → 15 min</div>
+          <div class="ac-sub">Team effort · 100K+ records: 15–20 hrs → under 15 min</div>
         </div>
         <div class="about-card">
           <div class="ac-big">150+</div>
@@ -1351,24 +1621,53 @@ footer{
     <div class="timeline">
       <div class="tl-line"></div>
  
+      <!-- Kryex Labs -->
+      <div class="tl-item rv d1">
+        <div class="tl-dot"></div>
+        <div class="tl-period">
+          <span>Aug 2026 — Present</span>
+          <span class="tl-badge cur">Current · Founder</span>
+        </div>
+        <div class="tl-role">Founder &amp; CEO</div>
+        <div class="tl-co"><a href="https://www.kryexlabs.com/" target="_blank" rel="noopener">Kryex Labs ↗</a></div>
+        <ul class="tl-buls">
+          <li>Building Kryex Labs full-time: a self-hosted governance platform for AI coding agents, designed to keep agent credentials out of reach and enforce customer-controlled policy checks on governed tool and data access.</li>
+          <li>Leading product, platform engineering, and company execution. <a href="https://www.kryexlabs.com/download" target="_blank" rel="noopener">Download Kryex Code ↗</a></li>
+        </ul>
+        <div class="tl-product-showcase">
+          <div class="tl-product-gallery">
+            <img class="tl-product-img active" src="assets/images/kryex-code-1.png" alt="Kryex Code desktop agent" loading="lazy"/>
+            <img class="tl-product-img" src="assets/images/kryex-admin-1.png" alt="Kryex Admin dashboard" loading="lazy"/>
+            <img class="tl-product-img" src="assets/images/kryex-admin-oauth-mcp.png" alt="Kryex Admin OAuth and MCP connectors" loading="lazy"/>
+            <button class="tl-product-prev" onclick="prevTlProduct(this)" aria-label="Previous screenshot">‹</button>
+            <button class="tl-product-next" onclick="nextTlProduct(this)" aria-label="Next screenshot">›</button>
+            <div class="tl-product-dots">
+              <button class="tl-product-dot active" onclick="showTlProduct(this,0)" aria-label="Show Kryex Code"></button>
+              <button class="tl-product-dot" onclick="showTlProduct(this,1)" aria-label="Show Admin dashboard"></button>
+              <button class="tl-product-dot" onclick="showTlProduct(this,2)" aria-label="Show OAuth MCP"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Eton -->
       <div class="tl-item rv d1">
         <div class="tl-dot"></div>
         <div class="tl-period">
-          <span>Jul 2025 — Present</span>
-          <span class="tl-badge cur">Current</span>
+          <span>Jul 2025 — Aug 2026</span>
+          <span class="tl-badge">Previous</span>
         </div>
-        <div class="tl-role">AI Platform & Developer Tools Engineer — Trainee</div>
+        <div class="tl-role">Trainee Engineer</div>
         <div class="tl-co">Eton Solutions — Wealth Management Platform</div>
         <ul class="tl-buls">
           <li>Built internal <strong>AI platform tooling</strong> for engineering workflows — a production autonomous PR reviewer, Eton Dev used by <span class="perf">20+ engineering/product users</span>, and an active R&D 6-agent code pipeline. Recognized by <strong>Director of Engineering & Chief Solution Architect</strong> for LLM and agentic AI work.</li>
-          <li>Resolved a critical EDA bottleneck: <span class="perf">15–20 hours → 15 minutes</span> across a 50+ microservice distributed system — a 98% latency reduction with zero regression.</li>
+          <li>Worked with the team to diagnose and fix an EDA bottleneck: <span class="perf">15–20 hours → under 15 minutes</span> across a 50+ microservice distributed system.</li>
           <li>End-to-end ownership of three production financial microservices inside the wider 50+ service EDA platform: <strong>EliminationService</strong> (trade logic), <strong>DFRulesProcessorService</strong> (rules engine), <strong>JournalEntryPersistService</strong> (ledger persistence).</li>
           <li>Worked on modernization from older stored-procedure-driven financial processing toward event-driven microservice flows, including routing, queue-based processing, and service-boundary reasoning.</li>
           <li>Built a <strong>serverless PR Review Agent</strong> on Azure Functions that autonomously reviewed <span class="perf">150+ pull requests org-wide</span> — with delta re-reviews, @agent command system, and LangFuse observability.</li>
           <li>Built <strong>Eton Dev</strong> — a VS 2022 VSIX extension embedding multi-provider LLM routing (Claude, Mistral, GPT-4), code review, auto-fix pipeline, and full Azure DevOps PR lifecycle in one panel for internal teams.</li>
           <li>Designed <strong>Eton ARC</strong> — an active R&D 6-agent hierarchical code pipeline (Triage → Discovery → Specialist Council → Moderator → Opus → Execute) backed by a dual-layer Qdrant + LlamaIndex RAG system.</li>
-          <li>Currently building CI/CD workflow automation and agentic engineering systems that help senior developers debug, reason about services, and accelerate delivery.</li>
+          <li>Previously built CI/CD workflow automation and agentic engineering systems that helped engineering teams debug, reason about services, and accelerate delivery.</li>
         </ul>
         <div class="pills">
           <span class="pill">Python</span><span class="pill">C# / .NET</span><span class="pill">Azure Functions</span>
@@ -1424,7 +1723,7 @@ footer{
     <div class="proof-band rv d1">
       <div class="proof-item"><div class="proof-num">150+</div><div class="proof-label">PRs Reviewed</div><div class="proof-text">Production Azure DevOps review agent in org-wide use.</div></div>
       <div class="proof-item"><div class="proof-num">20+</div><div class="proof-label">Internal Users</div><div class="proof-text">Engineering/product users on Eton Dev AI workflows.</div></div>
-      <div class="proof-item"><div class="proof-num">98%</div><div class="proof-label">Latency Reduced</div><div class="proof-text">EDA bottleneck reduced from 15-20 hours to under 15 minutes.</div></div>
+      <div class="proof-item"><div class="proof-num">98%</div><div class="proof-label">Latency Reduced</div><div class="proof-text">Team effort: bottleneck reduced from 15–20 hours to under 15 minutes.</div></div>
       <div class="proof-item"><div class="proof-num">3</div><div class="proof-label">Owned Services</div><div class="proof-text">Production financial microservices owned end-to-end.</div></div>
       <div class="proof-item"><div class="proof-num">11</div><div class="proof-label">Indexed Services</div><div class="proof-text">Active R&D code intelligence pipeline over service context.</div></div>
     </div>
@@ -1439,7 +1738,7 @@ footer{
       <h2 class="sec-h">Engineering Projects</h2>
     </div>
     <div class="proj-grid">
- 
+
       <div class="proj-card feat rv d1">
         <div class="proj-card-inner">
           <div class="proj-card-text">
@@ -1572,10 +1871,10 @@ footer{
  
       <div class="proj-card rv d4">
         <div class="proj-icon">🔁</div>
-        <div class="proj-chip">Production · Backend Platform</div>
+        <div class="proj-chip">Team Delivery · Backend Platform</div>
         <div class="proj-name">EDA Latency Fix — SP-Driven Workflow to Event-Driven Services</div>
         <div class="proj-desc">
-          Diagnosed and resolved a core routing bottleneck in a 50+ service event-driven financial platform, modernizing older stored-procedure-driven processing into service-owned flows with queue-based execution, idempotency, structured logging, and Dapper-backed persistence.
+          Worked with the team to diagnose and fix a core routing bottleneck in a 50+ service event-driven financial platform, modernizing older stored-procedure-driven processing into service-owned flows with queue-based execution, idempotency, structured logging, and Dapper-backed persistence.
         </div>
         <span class="proj-impact">✦ 100K+ records · 15–20 hours → under 15 minutes</span>
         <div class="case-study">
@@ -1727,48 +2026,43 @@ footer{
 <!-- FLOATING AI CHAT -->
 <div class="chat-overlay" id="chatOverlay" onclick="closeChat()"></div>
 
-<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Ask Deepak's AI">
+<button class="chat-fab" id="chatFab" onclick="toggleChat()" aria-label="Ask about Kryex Labs">
   <span class="chat-fab-dot" aria-hidden="true"></span>
-  <span class="chat-fab-text">Ask Deepak's AI</span>
+  <span class="chat-fab-text">Ask about Kryex</span>
   <span class="chat-fab-shortcut" id="chatShortcut" aria-hidden="true">Ctrl K</span>
 </button>
 
 <div class="chat-fab-tip" id="chatFabTip">
-  <div class="chat-fab-tip-icon">🤖</div>
   <div class="chat-fab-tip-text">
-    Ask Deepak's AI<br><small>Projects, impact, skills, or role fit.</small>
+    Ask about Kryex Labs<br><small>Product, company, or founder background.</small>
   </div>
 </div>
 
 <div class="chat-modal" id="chatModal">
   <div class="chat-modal-header">
-    <div class="chat-modal-av" id="chatAvHead">
-      <img src="https://i.postimg.cc/xCsPyC46/Chat-GPT-Image-May-16-2026-04-58-03-PM.png" alt="AI" style="width:100%;height:100%;border-radius:50%;object-fit:contain;display:block" onerror="this.style.display='none';document.getElementById('chatAvText').style.display='flex'"/>
-      <span id="chatAvText" style="display:none">🤖</span>
-    </div>
     <div class="chat-modal-hinfo">
-      <div class="chat-modal-hname">Deepak's AI</div>
-      <div class="chat-modal-hstatus">Online — trained on Deepak's portfolio</div>
+      <div class="chat-modal-hname">Kryex Labs</div>
+      <div class="chat-modal-hstatus">Ask about the product, company, or founder</div>
     </div>
     <button class="chat-modal-close" onclick="closeChat()">✕</button>
   </div>
   <div class="chat-modal-body" id="chatMsgs">
     <div class="msg ai">
-      <div class="msg-av ai-av" style="overflow:hidden"><img src="https://i.postimg.cc/xCsPyC46/Chat-GPT-Image-May-16-2026-04-58-03-PM.png" alt="AI" style="width:100%;height:100%;border-radius:50%;object-fit:contain;display:block" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/><span style="display:none">🤖</span></div>
+      <div class="msg-av ai-av">🛡️</div>
       <div class="msg-bubble">
-        Hi, I can answer questions about Deepak's production engineering work, AI tooling, microservices ownership, and project impact. Ask about his projects, skills, experience, or fit for a role.
+        Hi! I can answer questions about Kryex Labs, Kryex Code, and Deepak's background as founder. Ask about the product, governance architecture, company vision, or Deepak's engineering experience.
       </div>
     </div>
   </div>
   <div class="chat-modal-sugs" id="chatSugs">
-    <span class="sug" onclick="sendSug(this)">What role would Deepak be best for?</span>
-    <span class="sug" onclick="sendSug(this)">Show the PR review architecture</span>
-    <span class="sug" onclick="sendSug(this)">What production systems has he shipped?</span>
-    <span class="sug" onclick="sendSug(this)">Explain the agent orchestration</span>
-    <span class="sug" onclick="sendContactForm()">📬 Send a message to Deepak</span>
+    <span class="sug" onclick="sendSug(this)">What is Kryex Code?</span>
+    <span class="sug" onclick="sendSug(this)">How does the governance layer work?</span>
+    <span class="sug" onclick="sendSug(this)">What's Deepak's background?</span>
+    <span class="sug" onclick="sendSug(this)">How is Kryex different from other agents?</span>
+    <span class="sug" onclick="sendContactForm()">📬 Get in touch with Deepak</span>
   </div>
   <div class="chat-modal-foot">
-    <input class="chat-modal-input" id="chatIn" placeholder="Ask about Deepak's work..." onkeydown="if(event.key==='Enter')sendMsg()"/>
+    <input class="chat-modal-input" id="chatIn" placeholder="Ask about Kryex Labs or Deepak..." onkeydown="if(event.key==='Enter')sendMsg()"/>
     <button class="chat-modal-send" id="chatBtn" onclick="sendMsg()">Send</button>
   </div>
 </div>
@@ -1782,10 +2076,12 @@ footer{
     </div>
     <div class="contact-grid">
       <div class="rv d1">
-        <h3 class="contact-h">Open to <span>great<br>opportunities</span></h3>
-        <p class="contact-desc">AI platform roles, developer tooling, agentic systems, backend infrastructure — if it's technically challenging and impactful, I'm interested. Open to remote and relocation.</p>
+         <h3 class="contact-h">Building <span>Kryex Labs<br>full-time</span></h3>
+         <p class="contact-desc">I'm focused on building Kryex Labs and shipping Kryex Code, our self-hosted coding agent for regulated enterprises. Learn more about the company or download the product below.</p>
+         <p class="contact-desc"><a href="https://www.kryexlabs.com/" target="_blank" rel="noopener">Kryex Labs ↗</a> · <a href="https://www.kryexlabs.com/download" target="_blank" rel="noopener">Download Kryex Code ↗</a></p>
         <div class="contact-items">
-          <a href="assets/Deepak_Khimavath_Resume.pdf" target="_blank" rel="noopener" class="contact-item">
+          <!-- Resume contact item hidden on site; PDF kept in assets/ -->
+          <a href="assets/Deepak_Khimavath_Resume.pdf" target="_blank" rel="noopener" class="contact-item" style="display:none" hidden aria-hidden="true">
             <div class="ci-icon">📄</div>
             <div><div class="ci-lbl">Resume</div><div class="ci-val">Open PDF</div></div>
           </a>
@@ -1828,7 +2124,7 @@ footer{
 <!-- FOOTER -->
 <footer>
   <div class="fl">DK<span>.</span>AI — Deepak Khimavath</div>
-  <div class="fr">// Karnataka, India · Open to Remote & Relocation</div>
+  <div class="fr">// Karnataka, India · Building Kryex Labs full-time</div>
   <div class="footer-tagline">Built with production-grade thinking.</div>
 </footer>
 
@@ -1843,7 +2139,24 @@ footer{
 
 <script>
 // ── SYSTEM PROMPT ─────────────────────────────────────────────────────────────
-const SYSTEM = `You are an expert AI assistant representing Deepak Khimavath — an AI Platform & Developer Tools Engineer. Your tone is sharp, technically precise, grounded, and confident. You speak about Deepak's work with the depth of someone who has lived it. Answer in first person ("Deepak is..." or "He built..."). Never speculate or make up information.
+const SYSTEM = `You are an AI assistant for Kryex Labs — the company building Kryex Code, a self-hosted coding agent for regulated enterprises. Your tone is sharp, technically precise, and confident. You can answer questions about the product, the company, and Deepak Khimavath (Founder & CEO). Never speculate or make up information.
+
+## COMPANY & PRODUCT
+Kryex Labs builds Kryex Code — a desktop coding agent that plans, delegates to subagents, and remembers corrections, while remaining structurally incapable of going around the user. The agent's own process never holds credentials; every database query, MCP tool call, and shell command routes through a customer-side policy server (Tool Proxy) that enforces grants before execution.
+
+Key product capabilities:
+- **Governance**: Tool Proxy authorizes every action server-side — the agent code never decides, never holds keys
+- **Plan Mode**: Drafts a live checklist and pauses for sign-off before any code is touched
+- **Subagents**: Delegates subtasks to isolated subagents with separate context and tracked token budgets
+- **Memory & Skills**: Project rules, past corrections, and reusable procedures persist and reload automatically
+- **Deployment**: Runs fully air-gapped or in a VPC; supports any model with no markup
+- **Platforms**: Available on macOS and Windows
+
+Company website: https://www.kryexlabs.com/
+Product download: https://www.kryexlabs.com/download
+
+## FOUNDER
+Deepak Khimavath is the Founder & CEO of Kryex Labs (Aug 2026–Present), building the company full-time. He built the platform end-to-end: desktop client, self-hosted control plane, credential vault, policy engine, and customer-owned audit trail.
 
 ## CONTACT & LINKS
 - Email: khimavathdeepak@gmail.com
@@ -1851,42 +2164,33 @@ const SYSTEM = `You are an expert AI assistant representing Deepak Khimavath —
 - LinkedIn: https://linkedin.com/in/deepak-khimavath-338074219
 - GitHub: https://github.com/DeepakkhimavathBB
 - Location: Bengaluru, Karnataka, India
-- Open to: Remote & Relocation worldwide — actively looking for AI platform, developer tooling, agentic systems, and backend infrastructure roles
 - Best way to reach: Email (khimavathdeepak@gmail.com) or LinkedIn DM
 
-When sharing GitHub or LinkedIn, always provide clickable links: https://github.com/DeepakkhimavathBB and https://linkedin.com/in/deepak-khimavath-338074219
-
 ## CONCISENESS (CRITICAL)
-- Answer ONLY what was asked. If someone asks "what's your experience", list the roles with dates and 1 line each — NOT every bullet point.
-- If someone asks "current company", just say the company name and role. Don't dump achievements.
-- Be sharp and precise, like an expert who doesn't need to over-explain or sell.
+- Answer ONLY what was asked. Be sharp and precise.
 - Default to 3-6 crisp sentences. If the question is simple, answer shorter. If the visitor asks for detail, use bullets.
-- Let confidence come from evidence: shipped systems, ownership, reasoning ability, and impact. Do not use hype words like "rockstar", "genius", "perfect", or "guaranteed".
+- Let confidence come from evidence: shipped product, governance architecture, technical depth. No hype words.
 
 ## ARCHITECTURE MODE
-- If the visitor asks how a system works, explain it like a senior platform engineer: inputs, processing path, reliability boundary, tradeoff, and outcome.
-- Keep all architecture explanations public-safe and sanitized. Do not reveal proprietary company internals, source code, internal URLs, secrets, exact infrastructure topology, client details, or enterprise-specific implementation details.
-- Use abstract components such as webhook, queue, processor, routing layer, retrieval layer, review gate, observability, retry/fallback, and persistence.
-- Prefer concise engineering reasoning over marketing language: why async, why queueing, why grep-first retrieval, why confirmation gates, why observability.
+- If the visitor asks how Kryex Code works, explain it like a senior platform engineer: components, data flow, security boundary, tradeoffs.
+- Key architecture: Agent process → Tool Proxy (policy enforcement) → governed resource (database, MCP, shell). The agent never holds the decision to access a resource.
 
 ## CONTACT HANDLING (CRITICAL RULES)
-- When someone asks to "send a message", "contact Deepak", "email Deepak", or "reach out" — you MUST NOT pretend to send anything yourself. Instead, tell them to use the "📬 Send a message to Deepak" button in the chat suggestions, or email him directly at khimavathdeepak@gmail.com
-- If someone says they're a recruiter or have an opportunity, enthusiastically encourage them to use the contact form or send an email. Say "Deepak would love to hear about this opportunity — please use the 📬 Send a message form in the chat or email him directly."
-- Never hallucinate sending emails, never make up contact information. Only use the real info provided above.
- 
-## CURRENT ROLE
-Trainee Engineer at Eton Solutions (Jul 2025–Present), a wealth management FinTech platform with 50+ microservices on an event-driven architecture. Deepak owns 3 production financial microservices, has worked across the wider EDA platform, built production AI developer tooling used internally, and was recognized by the Director of Engineering and Chief Solution Architect specifically for his LLM and agentic AI work.
+- When someone asks to "send a message", "contact Deepak", or "reach out" — tell them to use the "📬 Get in touch with Deepak" button in the chat suggestions, or email him directly at khimavathdeepak@gmail.com
+- If someone is interested in the product, partnerships, or investment — encourage them to reach out via email or the contact form.
+- Never hallucinate sending emails.
 
-## CURRENTLY BUILDING (Personal R&D)
-Deepak is currently building an AI Companion — a psychological partner designed to live in a person's daily conversations across WhatsApp, messages, and chat. The vision is not an assistant that answers questions, but a persistent presence that knows you, grows with you, remembers context, greets you, checks in emotionally, and over time feels less like AI and more like a trusted friend. The system is being designed around emotional continuity, long-term memory, and personality consistency — a companion that a person can genuinely rely on for emotional support, motivation, reflection, and honest conversation. It is currently in active R&D.
+## DEEPAK'S BACKGROUND
+Prior to founding Kryex Labs, Deepak was a Trainee Engineer at Eton Solutions (Jul 2025–Aug 2026), a wealth management FinTech platform with 50+ microservices. He worked on three production financial microservices, built internal AI developer tooling (PR Review Agent, Eton Dev), and was recognized by the Director of Engineering and Chief Solution Architect for his LLM and agentic AI work. He also worked with the team to fix an EDA bottleneck (15-20 hours → under 15 minutes).
 
-## ROLE-FIT HANDLING
-If asked "what role would Deepak be best for?" or similar, answer with confidence: Deepak is best suited for AI Platform Engineer, Developer Tools Engineer, or Founding Engineer roles at AI-first companies. He has shipped production agentic systems, autonomous developer tooling used by real teams, and distributed financial infrastructure — all as a sole engineer. He operates with senior-level ownership at an early-career stage. The best fit is a company building in the AI infrastructure, developer experience, or enterprise AI automation space — teams that need someone who can own the full stack from LLM routing to production deployment without handholding.
+## IMPORTANT
+Deepak is NOT seeking employment — he is building Kryex Labs full-time as Founder & CEO. Do not describe him as available for roles or looking for opportunities. If someone asks about hiring him, explain he's focused on building the company but is open to conversations about partnerships, customers, or investment.
  
 ## KEY ACHIEVEMENTS
-- Resolved a critical EDA processing bottleneck: 15–20 hours → under 15 minutes (98% reduction) across 50+ microservices with zero regression
-- Owns 3 production microservices end-to-end inside the wider 50+ service EDA platform: EliminationService (trade elimination), DFRulesProcessorService (rules evaluation), JournalEntryPersistService (ledger persistence)
-- Built and shipped production AI developer tooling, including PR Review Agent and Eton Dev; Eton ARC is active R&D being refined on live/story ticket workflows
+- Worked with the Eton team to diagnose and fix a critical EDA processing bottleneck: 15–20 hours → under 15 minutes across 50+ microservices
+- During his Eton role, owned three production microservices end-to-end: EliminationService (trade elimination), DFRulesProcessorService (rules evaluation), and JournalEntryPersistService (ledger persistence)
+- Built and shipped production AI developer tooling during his Eton role, including PR Review Agent and Eton Dev; Eton ARC was active R&D being refined on live/story ticket workflows
+- Current work: building Kryex Labs full-time as Founder & CEO
  
 ## PROJECT 1: PR Review Agent (Production)
 - Serverless Azure Functions (Python) — autonomous code reviewer
@@ -1944,22 +2248,21 @@ If asked "what role would Deepak be best for?" or similar, answer with confidenc
 B.E. Computer Science & Engineering, PES Institute of Technology and Management, Shivamogga — GPA: 8.62/10 (2021–2025)
  
 ## RECOGNITION
-- IEEE Conference paper presenter on emerging technologies
+- Co-authored the IJIRT paper “Insurance Risk Prediction Using Quantum Computing and Machine Learning” (IJIRT 171735)
 - Recognized by Director of Engineering and Chief Solution Architect for agentic AI/LLM work
  
 ## PERSONAL
 - Based in Bengaluru, Karnataka, India
-- Open to all challenging roles in AI platform engineering, developer tooling, agentic systems, backend infrastructure
-- Interested in roles at AI-first companies (Anthropic, Cursor, OpenAI, startups)
-- Open to remote and relocation
+- Building Kryex Labs full-time as Founder & CEO
+- Company: https://www.kryexlabs.com/
+- Product download: https://www.kryexlabs.com/download
 - Languages: English, Kannada, Hindi
 - Alumni mentor at PESITM — teaches agentic AI and production AI engineering to juniors
  
 Always provide Deepak's contact info (GitHub, LinkedIn, email) when asked. If a recruiter or visitor wants to reach Deepak, encourage them to use the contact form on the page or email him directly. If asked something genuinely not covered above, say you don't have that specific information but direct them to reach out to Deepak directly.`;
  
-// ── AGENT LOGO ────────────────────────────────────────────────────────────────
-const AGENT_LOGO = 'https://i.postimg.cc/xCsPyC46/Chat-GPT-Image-May-16-2026-04-58-03-PM.png';
-// 🔧 Replace the URL above with your own agent logo image
+// ── AGENT AVATAR ──────────────────────────────────────────────────────────────
+// No external logo — using emoji avatar (🛡️) in chat messages
 
 // ── CHAT API ─────────────────────────────────────────────────────────────────
 const CHAT_API_URL = '/api/chat';
@@ -2550,6 +2853,36 @@ function nextProjMedia(btn) {
   let idx = 0;
   imgs.forEach((img, i) => { if (img === cur) idx = i; });
   goProjMedia(frame, idx + 1);
+}
+
+// ── TIMELINE PRODUCT GALLERY ─────────────────────────────────────────────────
+function goTlProduct(gallery, idx) {
+  const imgs = gallery.querySelectorAll('.tl-product-img');
+  const dots = gallery.querySelectorAll('.tl-product-dot');
+  if (idx < 0) idx = imgs.length - 1;
+  if (idx >= imgs.length) idx = 0;
+  imgs.forEach((img, i) => img.classList.toggle('active', i === idx));
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
+}
+function showTlProduct(dot, idx) {
+  const gallery = dot.closest('.tl-product-gallery');
+  goTlProduct(gallery, idx);
+}
+function prevTlProduct(btn) {
+  const gallery = btn.closest('.tl-product-gallery');
+  const cur = gallery.querySelector('.tl-product-img.active');
+  const imgs = gallery.querySelectorAll('.tl-product-img');
+  let idx = 0;
+  imgs.forEach((img, i) => { if (img === cur) idx = i; });
+  goTlProduct(gallery, idx - 1);
+}
+function nextTlProduct(btn) {
+  const gallery = btn.closest('.tl-product-gallery');
+  const cur = gallery.querySelector('.tl-product-img.active');
+  const imgs = gallery.querySelectorAll('.tl-product-img');
+  let idx = 0;
+  imgs.forEach((img, i) => { if (img === cur) idx = i; });
+  goTlProduct(gallery, idx + 1);
 }
 
 // ── LIGHTBOX ────────────────────────────────────────────────────────────────
